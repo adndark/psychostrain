@@ -31,7 +31,7 @@ public class Window extends javax.swing.JFrame implements KeyListener, MouseList
         this.setForeground(Color.BLACK);
         initComponents();
         setCrazy();
-        createBufferStrategy(2);
+        createBufferStrategy(3);
         lifeBar = GameImage.loadImage("sprites/misc/lifeBar.png");
         notifyIcon = GameImage.loadImage("sprites/misc/notify.png");
         message = GameImage.loadImage("sprites/misc/ifLol.png");
@@ -85,6 +85,7 @@ public class Window extends javax.swing.JFrame implements KeyListener, MouseList
             g.fillRect(0, 0, 768, 700);
             g.drawImage(gameOver, 0, 0, this);
         }
+        g.dispose();
         p.show();
     }
 
