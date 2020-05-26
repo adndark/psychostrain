@@ -1,4 +1,3 @@
-//Window.java
 package PsychoGame;
 
 import PsychoSystem.GameImage;
@@ -15,40 +14,61 @@ import java.util.Observable;
 import java.util.Observer;
 
 //  PsySoft Team 2008
-//       (Manuel Espinoza, Alberto Zorrilla, Guillermo Leon y Arquimides Diaz)
-public class Window extends javax.swing.JFrame implements KeyListener, MouseListener, MouseMotionListener, Observer {
+//       (Manuel Espinoza, Alberto Zorrilla, Guillermo Leon y Arquimedes Diaz)
+/**
+ * Displays game.
+ */
+public class Window extends javax.swing.JFrame implements
+        KeyListener,
+        MouseListener,
+        MouseMotionListener,
+        Observer {
 
+    /**
+     * Window's title.
+     */
     private String title;
-    private int width, height;
-    public BufferedImage lifeBar, notifyIcon, message, gameOver;
-    public BufferedImage[] weapons = new BufferedImage[4];
-    public boolean firstRun, game;
+    /**
+     * Window's width.
+     */
+    private int width;
+    /**
+     * Window's height.
+     */
+    private int height;
+    /**
+     * BufferedImage for game components.
+     */
+    private BufferedImage lifeBar;
+    private BufferedImage notifyIcon;
+    private BufferedImage message;
+    private BufferedImage gameOver;
+    private BufferedImage[] weapons;
+    /**
+     * Is first game run.
+     */
+    public boolean firstRun;
+    /**
+     * Is running game.
+     */
+    private boolean game;
 
     public Window() {
         this.title = "PsychoStrain 1.1";
         this.width = 768;
         this.height = 510;
         this.setForeground(Color.BLACK);
+        this.weapons = new BufferedImage[4];
         initComponents();
         setCrazy();
+        // Originally createBufferStrategy used value 2
         createBufferStrategy(3);
         lifeBar = GameImage.loadImage("sprites/misc/lifeBar.png");
         notifyIcon = GameImage.loadImage("sprites/misc/notify.png");
         message = GameImage.loadImage("sprites/misc/ifLol.png");
         gameOver = GameImage.loadImage("sprites/misc/gameover.png");
         game = false;
-    }
-
-    public void setCrazy() {
-        try {
-            Font crazy = Font.createFont(Font.TRUETYPE_FONT, new File("fonts/byte.ttf"));
-            crazy = crazy.deriveFont(20.0f);
-            this.setFont(crazy);
-        } catch (FontFormatException ex) {
-            System.out.println("No se cargo la font");
-        } catch (IOException ex) {
-            System.out.println("No se cargo la font");
-        }
+        firstRun = false;
     }
 
     @Override
@@ -60,36 +80,50 @@ public class Window extends javax.swing.JFrame implements KeyListener, MouseList
         firstRun = true;
     }
 
-    public void refresh() {
-        System.out.println("Refreshing window");
+    private void setCrazy() {
+        try {
+            Font crazy = Font.createFont(Font.TRUETYPE_FONT, new File("fonts/byte.ttf"));
+            crazy = crazy.deriveFont(20.0f);
+            this.setFont(crazy);
+        } catch (FontFormatException ex) {
+            System.out.println("No se cargo la font");
+        } catch (IOException ex) {
+            System.out.println("No se cargo la font");
+        }
+    }
+
+    private void refresh() {
+        //System.out.println("Refreshing window");
+        // Get BufferStrategy and draw components
         BufferStrategy p = getBufferStrategy();
-        Graphics g = p.getDrawGraphics();
+        Graphics graphics = p.getDrawGraphics();
         if (!game) {
-            g.setColor(Color.BLACK);
-            g.fillRect(0, 0, 768, 700);
-            g.drawImage(Engine.level.getBackgroundImageRealisation(), 0, 0, this);
-            g.drawImage(Engine.hacker.getCompleteImage(), (int) Engine.hacker.getXposition(), (int) Engine.hacker.getYposition(), this);
-            g.drawImage(Engine.level.getMapImage(), 0, 0, this);
-            g.setColor(Color.GREEN);
-            g.drawImage(Engine.weapon.weaponRefresh(), 0, 480, this);
+            graphics.setColor(Color.BLACK);
+            graphics.fillRect(0, 0, 768, 700);
+            graphics.drawImage(Engine.level.getBackgroundImageRealisation(), 0, 0, this);
+            graphics.drawImage(Engine.hacker.getImage(), (int) Engine.hacker.getXposition(),
+                    (int) Engine.hacker.getYposition(), this);
+            graphics.drawImage(Engine.level.getMapImage(), 0, 0, this);
+            graphics.setColor(Color.GREEN);
+            graphics.drawImage(Engine.weapon.weaponRefresh(), 0, 480, this);
             if (Engine.cmd.getNotify()) {
-                g.drawImage(notifyIcon, 5, getHeight() - 40, this);
+                graphics.drawImage(notifyIcon, 5, getHeight() - 40, this);
             }
             if (firstRun) {
-                g.drawImage(message, 44, getHeight() - 86, this);
+                graphics.drawImage(message, 44, getHeight() - 86, this);
             }
-            Engine.level.paintEnemies(g);
-            nanoBotsRefresh(g);
+            Engine.level.paintEnemies(graphics);
+            nanoBotsRefresh(graphics);
         } else {
-            g.setColor(Color.BLACK);
-            g.fillRect(0, 0, 768, 700);
-            g.drawImage(gameOver, 0, 0, this);
+            graphics.setColor(Color.BLACK);
+            graphics.fillRect(0, 0, 768, 700);
+            graphics.drawImage(gameOver, 0, 0, this);
         }
-        g.dispose();
+        graphics.dispose();
         p.show();
     }
 
-    public void nanoBotsRefresh(Graphics g) {
+    private void nanoBotsRefresh(Graphics g) {
         try {
             if (Engine.hpaux < 100) {
                 g.setColor(Color.GREEN);
@@ -113,8 +147,8 @@ public class Window extends javax.swing.JFrame implements KeyListener, MouseList
         }
     }
 
-    public void setGame(boolean b) {
-        game = b;
+    public void setGame(boolean game) {
+        this.game = game;
     }
 
     /**
@@ -204,7 +238,6 @@ public class Window extends javax.swing.JFrame implements KeyListener, MouseList
             this.repaint();
         }
     }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
 }
