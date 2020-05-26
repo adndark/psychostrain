@@ -1,6 +1,4 @@
-
 //Window.java
-
 package PsychoGame;
 
 import PsychoSystem.GameImage;
@@ -18,16 +16,15 @@ import java.util.Observer;
 
 //  PsySoft Team 2008
 //       (Manuel Espinoza, Alberto Zorrilla, Guillermo Leon y Arquimides Diaz)
+public class Window extends javax.swing.JFrame implements KeyListener, MouseListener, MouseMotionListener, Observer {
 
-public class Window extends javax.swing.JFrame implements KeyListener, MouseListener,MouseMotionListener, Observer{
-    
-  private String title;
-  private int width,height;
-  public BufferedImage lifeBar,notifyIcon,message, gameOver;
-  public BufferedImage[] weapons=new BufferedImage[4];
-  public boolean firstRun, game;
+    private String title;
+    private int width, height;
+    public BufferedImage lifeBar, notifyIcon, message, gameOver;
+    public BufferedImage[] weapons = new BufferedImage[4];
+    public boolean firstRun, game;
 
-  public Window() {
+    public Window() {
         this.title = "PsychoStrain 1.1";
         this.width = 768;
         this.height = 510;
@@ -35,89 +32,94 @@ public class Window extends javax.swing.JFrame implements KeyListener, MouseList
         initComponents();
         setCrazy();
         createBufferStrategy(2);
-        lifeBar=GameImage.loadImage("sprites/misc/lifeBar.png");
-        notifyIcon=GameImage.loadImage("sprites/misc/notify.png");
-        message=GameImage.loadImage("sprites/misc/ifLol.png");
+        lifeBar = GameImage.loadImage("sprites/misc/lifeBar.png");
+        notifyIcon = GameImage.loadImage("sprites/misc/notify.png");
+        message = GameImage.loadImage("sprites/misc/ifLol.png");
         gameOver = GameImage.loadImage("sprites/misc/gameover.png");
         game = false;
-  }
-
-
-  public void setCrazy(){
-    try {
-      Font crazy = Font.createFont(Font.TRUETYPE_FONT, new File("fonts/byte.ttf"));
-      crazy = crazy.deriveFont(20.0f);
-      this.setFont(crazy);
-    } catch (FontFormatException ex) {System.out.println("No se cargo la font");}
-      catch (IOException ex) {System.out.println("No se cargo la font");}
     }
-    
+
+    public void setCrazy() {
+        try {
+            Font crazy = Font.createFont(Font.TRUETYPE_FONT, new File("fonts/byte.ttf"));
+            crazy = crazy.deriveFont(20.0f);
+            this.setFont(crazy);
+        } catch (FontFormatException ex) {
+            System.out.println("No se cargo la font");
+        } catch (IOException ex) {
+            System.out.println("No se cargo la font");
+        }
+    }
+
     @Override
-    public void paint(Graphics g){
+    public void paint(Graphics g) {
         refresh();
     }
 
-    public void setFirstRun(){
+    public void setFirstRun() {
         firstRun = true;
     }
-    
-    
-    public void refresh(){
+
+    public void refresh() {
+        System.out.println("Refreshing window");
         BufferStrategy p = getBufferStrategy();
         Graphics g = p.getDrawGraphics();
-        if(!game){
+        if (!game) {
             g.setColor(Color.BLACK);
             g.fillRect(0, 0, 768, 700);
-            g.drawImage(Engine.level.getBackgroundImageRealisation(), 0, 0,this);
-            g.drawImage(Engine.hacker.getCompleteImage(), (int)Engine.hacker.getXposition(), (int)Engine.hacker.getYposition(), this);
-            g.drawImage(Engine.level.getMapImage(),0,0,this);
+            g.drawImage(Engine.level.getBackgroundImageRealisation(), 0, 0, this);
+            g.drawImage(Engine.hacker.getCompleteImage(), (int) Engine.hacker.getXposition(), (int) Engine.hacker.getYposition(), this);
+            g.drawImage(Engine.level.getMapImage(), 0, 0, this);
             g.setColor(Color.GREEN);
             g.drawImage(Engine.weapon.weaponRefresh(), 0, 480, this);
-            if(Engine.cmd.getNotify())
-              g.drawImage(notifyIcon, 5, getHeight()-40, this);
-            if(firstRun)
-              g.drawImage(message, 44, getHeight()-86, this);
+            if (Engine.cmd.getNotify()) {
+                g.drawImage(notifyIcon, 5, getHeight() - 40, this);
+            }
+            if (firstRun) {
+                g.drawImage(message, 44, getHeight() - 86, this);
+            }
             Engine.level.paintEnemies(g);
             nanoBotsRefresh(g);
-        } 
-        else{
+        } else {
             g.setColor(Color.BLACK);
             g.fillRect(0, 0, 768, 700);
-            g.drawImage(gameOver, 0,0,this);
+            g.drawImage(gameOver, 0, 0, this);
         }
         p.show();
     }
-    
-    public void nanoBotsRefresh(Graphics g){
-        try{
-            if(Engine.hpaux<100){
-            g.setColor(Color.GREEN);
-            }else if(Engine.hpaux>=100&&Engine.hpaux<170){
-                g.setColor(Color.YELLOW);    
-            }else{
+
+    public void nanoBotsRefresh(Graphics g) {
+        try {
+            if (Engine.hpaux < 100) {
+                g.setColor(Color.GREEN);
+            } else if (Engine.hpaux >= 100 && Engine.hpaux < 170) {
+                g.setColor(Color.YELLOW);
+            } else {
                 g.setColor(Color.RED);
             }
-            g.fillRoundRect(550, 485, 200, 20,5,5);
+            g.fillRoundRect(550, 485, 200, 20, 5, 5);
             g.clearRect(550, 485, Engine.hpaux, 20);
-            g.drawImage(lifeBar,550, 485,this);
+            g.drawImage(lifeBar, 550, 485, this);
             g.setColor(Color.white);
             g.drawString("NanoBots", 400, 500);
             g.drawString("NanoContainers", 400, 540);
             g.setColor(Color.black);
             g.fillRect(650, 510, 30, 30);
             g.setColor(Color.white);
-            g.drawString(""+Engine.getNanoContainers()+"", 650, 540);
-        } catch (NullPointerException e){}
+            g.drawString("" + Engine.getNanoContainers() + "", 650, 540);
+        } catch (NullPointerException e) {
+            System.out.println(e);
+        }
     }
 
-    public void setGame(boolean b){
+    public void setGame(boolean b) {
         game = b;
     }
-      
-    /** This method is called from within the constructor to
-     * initialize the form.
-     * WARNING: Do NOT modify this code. The content of this method is
-     * always regenerated by the Form Editor.
+
+    /**
+     * This method is called from within the constructor to initialize the form.
+     * WARNING: Do NOT modify this code. The content of this method is always
+     * regenerated by the Form Editor.
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -157,43 +159,51 @@ public class Window extends javax.swing.JFrame implements KeyListener, MouseList
     public void keyTyped(KeyEvent e) {
     }
 
-    
     public void keyPressed(KeyEvent e) {
         Engine.keyRefresh(e.getKeyCode(), true);
+        paint(null);
     }
 
     public void keyReleased(KeyEvent e) {
         Engine.keyRefresh(e.getKeyCode(), false);
+        paint(null);
     }
 
-    
     public void mouseDragged(MouseEvent e) {
-        if(Engine.weapon.checkAmmo()){
-            Engine.enemyKill(e.getPoint()); 
+        if (Engine.weapon.checkAmmo()) {
+            Engine.enemyKill(e.getPoint());
         }
     }
 
     public void mouseMoved(MouseEvent e) {
         Engine.setAim(e.getPoint());
-        
+
     }
 
     public void mouseClicked(MouseEvent e) {
-        if(Engine.weapon.checkAmmo()){
-            Engine.enemyKill(e.getPoint());     
+        if (Engine.weapon.checkAmmo()) {
+            Engine.enemyKill(e.getPoint());
         }
     }
 
-    public void mousePressed(MouseEvent e) {}
-    public void mouseReleased(MouseEvent e) {}
-    public void mouseEntered(MouseEvent e) {}
-    public void mouseExited(MouseEvent e) {}
+    public void mousePressed(MouseEvent e) {
+    }
+
+    public void mouseReleased(MouseEvent e) {
+    }
+
+    public void mouseEntered(MouseEvent e) {
+    }
+
+    public void mouseExited(MouseEvent e) {
+    }
 
     public void update(Observable o, Object arg) {
-        if(o == Engine.level.getMap()) this.repaint();
+        if (o == Engine.level.getMap()) {
+            this.repaint();
+        }
     }
-  
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
-
 }

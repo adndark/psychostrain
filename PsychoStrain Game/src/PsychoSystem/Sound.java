@@ -36,7 +36,7 @@ public class Sound {
   public void stop(){
     try{
     playing=false;
-    sound.stop();
+    //sound.stop();
     //sound.close();
     } catch(Exception e){System.out.println("Error de Sonido: "+e);}
   }
