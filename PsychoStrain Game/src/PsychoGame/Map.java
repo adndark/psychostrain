@@ -3,6 +3,7 @@
 
 package PsychoGame;
 
+import PsychoGame.gameobject.AnimatedObject;
 import PsychoSystem.FileLoader;
 import java.awt.Color;
 import java.awt.Graphics2D;

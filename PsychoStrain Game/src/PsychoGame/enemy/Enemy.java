@@ -1,6 +1,8 @@
 //Enemy.java
-package PsychoGame;
+package PsychoGame.enemy;
 
+import PsychoGame.Engine;
+import PsychoGame.gameobject.AnimatedObject;
 import PsychoSystem.GameImage;
 import PsychoSystem.Physics;
 import java.awt.Rectangle;

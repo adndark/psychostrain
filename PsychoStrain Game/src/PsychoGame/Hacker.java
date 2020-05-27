@@ -1,5 +1,6 @@
 package PsychoGame;
 
+import PsychoGame.gameobject.AnimatedObject;
 import PsychoSystem.*;
 import java.awt.Graphics2D;
 import java.awt.Point;

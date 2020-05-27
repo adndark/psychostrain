@@ -3,6 +3,16 @@
 
 package PsychoGame;
 
+import PsychoGame.enemy.EnemyTank;
+import PsychoGame.enemy.EnemySuperSpider;
+import PsychoGame.enemy.EnemySpider;
+import PsychoGame.enemy.EnemyRueda;
+import PsychoGame.enemy.EnemyRobot;
+import PsychoGame.enemy.EnemyMedusa;
+import PsychoGame.enemy.EnemyClawRobot;
+import PsychoGame.enemy.EnemyChainRobot;
+import PsychoGame.enemy.Enemy;
+import PsychoGame.gameobject.AnimatedObject;
 import java.awt.image.BufferedImage;
 import PsychoSystem.*;
 

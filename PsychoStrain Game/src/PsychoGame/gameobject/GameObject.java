@@ -1,16 +1,18 @@
 //GameObject.java
-package PsychoGame;
+package PsychoGame.gameobject;
 
 import PsychoSystem.GameImage;
 import java.awt.image.BufferedImage;
-import java.util.Observable;
 
 //  PsySoft Team 2008
 //       (Manuel Espinoza, Alberto Zorrilla, Guillermo Leon y Arquimides Diaz)
 public abstract class GameObject {
 
-    protected double xPosition, yPosition; //Coordenadas en donde será pintado en la pantalla.
-    protected String imageName; //Nombre de la imagen
+    // Coordenadas en donde será pintado en la pantalla.
+    protected double xPosition;
+    protected double yPosition;
+    //Nombre de la imagen
+    protected String imageName;
     protected BufferedImage image;
     //Imagen del objeto, en caso de ser inanimado, solo es una imagen pequeña
     //En caso de ser animado, es la imagen que contiene todas las subimagenes

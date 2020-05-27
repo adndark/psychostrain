@@ -3,6 +3,7 @@
 
 package PsychoSystem;
 
+import PsychoGame.gameobject.AnimatedObject;
 import PsychoGame.*;
 
 //  PsySoft Team 2008

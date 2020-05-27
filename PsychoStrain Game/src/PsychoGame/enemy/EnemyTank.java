@@ -1,5 +1,11 @@
-package PsychoGame;
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package PsychoGame.enemy;
 
+import PsychoGame.Engine;
+import PsychoGame.enemy.Enemy;
 import PsychoSystem.Physics;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
@@ -8,19 +14,19 @@ import java.awt.image.BufferedImage;
  *
  * @author Manuel
  */
-public class EnemySuperSpider extends Enemy {
+public class EnemyTank extends Enemy {
 
-    private int local1 = 0;
+    private int local1;
 
-    public EnemySuperSpider(
+    public EnemyTank(
             final int xPosition,
             final int yPosition,
             final int damagePerHit,
             final int hp,
             final int timeInactive,
             final int timeLoop) {
-        super("EnemySuperSpider.txt",
-                "enemy/SuperSpider",
+        super("EnemyTank.txt",
+                "enemy/Tank",
                 xPosition,
                 yPosition,
                 damagePerHit,
@@ -33,13 +39,14 @@ public class EnemySuperSpider extends Enemy {
 
     @Override
     public Rectangle getBounds() {
-        return new Rectangle((int) getScreenXPosition(), (int) getYposition() + 2, 45, 52);
+        return new Rectangle((int) getScreenXPosition(), (int) getYposition() + 2, 110, 85);
     }
 
     @Override
     public void enemyIntelligence() {
 
         if (this.getScreenXPosition() > Engine.hacker.getXposition()) {
+
             this.setVX(-6.0);
             this.moveXposition(this.getVX());
 
@@ -47,6 +54,7 @@ public class EnemySuperSpider extends Enemy {
                 setDirection(direction.BACKWARD);
 
             }
+
         }
 
         if (this.getScreenXPosition() < Engine.hacker.getXposition()) {
@@ -58,6 +66,7 @@ public class EnemySuperSpider extends Enemy {
 
             }
         }
+
     }
 
     @Override
@@ -65,15 +74,14 @@ public class EnemySuperSpider extends Enemy {
         Physics.gravity(this);
         setStateEnemy();
         if (getDirection() == direction.FORWARD) {
-
-            if (local1 < 1 || local1 > 6) {
-                local1 = 1;
+            if (local1 < 0 || local1 > 5) {
+                local1 = 0;
             }
             local1++;
         }
         if (getDirection() == direction.BACKWARD) {
-            if (local1 < 7 || local1 > 14) {
-                local1 = 8;
+            if (local1 < 6 || local1 > 10) {
+                local1 = 6;
             }
             local1++;
         }
@@ -82,7 +90,7 @@ public class EnemySuperSpider extends Enemy {
 
     @Override
     public String toString() {
-        String s = ">6";
+        String s = ">7";
         if (this.getYposition() < 10) {
             s += "00";
 

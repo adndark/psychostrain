@@ -1,6 +1,8 @@
 //AnimatedObject.java
-package PsychoGame;
+package PsychoGame.gameobject;
 
+import PsychoGame.Engine;
+import PsychoGame.gameobject.GameObject;
 import PsychoSystem.GameImage;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;

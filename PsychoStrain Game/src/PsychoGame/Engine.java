@@ -1,6 +1,7 @@
 //Engine.java
 package PsychoGame;
 
+import PsychoGame.enemy.Enemy;
 import PsychoMenu.Menu;
 import PsychoSystem.FileLoader;
 import PsychoSystem.Options;
@@ -206,8 +207,8 @@ public class Engine {
     }
 
     public static void setAim(Point a) {
-        double posx = hacker.xPosition + 32;
-        double posy = hacker.yPosition + 40;
+        double posx = hacker.getXposition() + 32;
+        double posy = hacker.getYposition() + 40;
 
         double x = a.x - posx, y = a.getY() - posy;
         double angulo = Math.atan2(y, x);

@@ -1,10 +1,12 @@
-package PsychoGame;
+package PsychoGame.enemy;
 
+import PsychoGame.Engine;
+import PsychoGame.enemy.Enemy;
 import PsychoSystem.Physics;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 
-public abstract class EnemyChainRobot extends Enemy {
+public class EnemyChainRobot extends Enemy {
 
     private int local1;
 
