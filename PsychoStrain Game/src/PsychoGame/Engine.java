@@ -206,8 +206,8 @@ public class Engine {
     }
 
     public static void setAim(Point a) {
-        double posx = hacker.Xposition + 32;
-        double posy = hacker.Yposition + 40;
+        double posx = hacker.xPosition + 32;
+        double posy = hacker.yPosition + 40;
 
         double x = a.x - posx, y = a.getY() - posy;
         double angulo = Math.atan2(y, x);
