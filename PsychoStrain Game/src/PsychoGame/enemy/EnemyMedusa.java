@@ -1,7 +1,6 @@
 package PsychoGame.enemy;
 
 import PsychoGame.Engine;
-import PsychoGame.enemy.Enemy;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 

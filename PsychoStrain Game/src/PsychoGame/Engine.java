@@ -1,6 +1,7 @@
 //Engine.java
 package PsychoGame;
 
+import PsychoGame.level.Level;
 import PsychoGame.enemy.Enemy;
 import PsychoMenu.Menu;
 import PsychoSystem.FileLoader;
@@ -13,6 +14,7 @@ import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 //  PsySoft Team 2008
@@ -277,9 +279,10 @@ public class Engine {
         setAim(a);
         hacker.setFireImage(a);
         weapon.setAmmo(false);
-        if (!level.enemies.isEmpty()) {
-            for (int j = 0; j < level.enemies.size(); j++) {
-                Enemy bad = level.enemies.get(j);
+        ArrayList<Enemy> enemies = level.getEnemies();
+        if (!enemies.isEmpty()) {
+            for (int j = 0; j < enemies.size(); j++) {
+                Enemy bad = enemies.get(j);
                 if (bad.isAlive()) {
                     if (bad.isActiveOnScreen(level.getDifX())) {
                         Rectangle r = bad.getBounds();

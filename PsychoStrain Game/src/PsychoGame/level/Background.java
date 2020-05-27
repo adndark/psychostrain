@@ -1,5 +1,5 @@
 //Background.java
-package PsychoGame;
+package PsychoGame.level;
 
 import java.awt.GraphicsConfiguration;
 import java.awt.GraphicsEnvironment;
@@ -55,12 +55,12 @@ public class Background {
         return viewPortY;
     }
 
-    public void setViewPort(int viewPortX, int viewPortY) {
+    public void setViewPort(final int viewPortX, final int viewPortY) {
         this.viewPortX = viewPortX;
         this.viewPortY = viewPortY;
     }
 
-    public void moveViewPort(int viewPortMoveX, int viewPortMoveY) {
+    public void moveViewPort(final int viewPortMoveX, final int viewPortMoveY) {
         viewPortX += viewPortMoveX;
         viewPortY += viewPortMoveY;
     }
@@ -109,7 +109,7 @@ public class Background {
         return realisedImage;
     }
 
-    public void draw(Graphics2D graphics2D, int drawX, int drawY) {
+    public void draw(final Graphics2D graphics2D, final int drawX, final int drawY) {
         if (direc == 1) {
             drawVertical(graphics2D, drawX, drawY);
         } else {
