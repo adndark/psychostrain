@@ -16,7 +16,7 @@ public class EnemyRueda extends Enemy {
             final int hp,
             final int timeInactive,
             final int timeLoop) {
-        super("EnemyRueda.txt",
+        super("configurations/enemy/EnemyRueda.txt",
                 "enemy/Rueda",
                 xPosition,
                 yPosition,

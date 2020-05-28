@@ -24,7 +24,7 @@ public class EnemySpider extends Enemy {
             final int hp,
             final int timeInactive,
             final int timeLoop) {
-        super("EnemySpider.txt",
+        super("configurations/enemy/EnemySpider.txt",
                 "enemy/Spider",
                 xPosition,
                 yPosition,

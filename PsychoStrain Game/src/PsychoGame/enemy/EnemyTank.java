@@ -24,7 +24,7 @@ public class EnemyTank extends Enemy {
             final int hp,
             final int timeInactive,
             final int timeLoop) {
-        super("EnemyTank.txt",
+        super("configurations/enemy/EnemyTank.txt",
                 "enemy/Tank",
                 xPosition,
                 yPosition,

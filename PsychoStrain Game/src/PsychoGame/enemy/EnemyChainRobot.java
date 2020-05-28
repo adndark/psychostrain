@@ -16,7 +16,7 @@ public class EnemyChainRobot extends Enemy {
             final int hp,
             final int timeInactive,
             final int timeLoop) {
-        super("EnemyChainRobot.txt",
+        super("configurations/enemy/EnemyChainRobot.txt",
                 "enemy/ChainRobot",
                 xPosition,
                 yPosition,

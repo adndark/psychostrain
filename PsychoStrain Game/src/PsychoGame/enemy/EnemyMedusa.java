@@ -19,7 +19,7 @@ public class EnemyMedusa extends Enemy {
             final int hp,
             final int timeInactive,
             final int timeLoop) {
-        super("EnemyMedusa.txt",
+        super("configurations/enemy/EnemyMedusa.txt",
                 "enemy/Medusa",
                 xPosition,
                 yPosition,

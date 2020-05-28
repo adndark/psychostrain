@@ -20,7 +20,7 @@ public class EnemySuperSpider extends Enemy {
             final int hp,
             final int timeInactive,
             final int timeLoop) {
-        super("EnemySuperSpider.txt",
+        super("configurations/enemy/EnemySuperSpider.txt",
                 "enemy/SuperSpider",
                 xPosition,
                 yPosition,

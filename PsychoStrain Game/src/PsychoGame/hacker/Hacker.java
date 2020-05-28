@@ -208,7 +208,7 @@ public class Hacker extends AnimatedObject {
 
     private BufferedImage getImageSecuenceLegs() {
 
-        System.out.println("Hacker state " + HackerState.toString());
+        // System.out.println("Hacker state " + HackerState.toString());
         if (HackerState == HackerState.DUCKING) {
             if (direction == Direction.FORWARD) {
                 if (!(Xstart >= 22 && Xstart < hackerLegs.length - 2)) {
