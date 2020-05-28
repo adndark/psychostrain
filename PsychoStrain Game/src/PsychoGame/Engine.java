@@ -1,6 +1,7 @@
 //Engine.java
 package PsychoGame;
 
+import PsychoGame.level.Map;
 import PsychoGame.level.Level;
 import PsychoGame.enemy.Enemy;
 import PsychoMenu.Menu;

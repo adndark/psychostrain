@@ -3,6 +3,7 @@
 
 package PsychoSystem;
 
+import PsychoGame.level.Map;
 import PsychoGame.*;
 import java.io.Serializable;
 

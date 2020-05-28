@@ -4,7 +4,6 @@ package PsychoGame.level;
 import PsychoGame.Console;
 import PsychoGame.Engine;
 import PsychoGame.Hacker;
-import PsychoGame.Map;
 import PsychoGame.Weapon;
 import PsychoGame.enemy.EnemyTank;
 import PsychoGame.enemy.EnemySuperSpider;
@@ -62,7 +61,8 @@ public class Level implements Serializable {
         final BufferedImage[] bf = new BufferedImage[2];
         bf[0] = GameImage.loadImage("images/logo.png");
         bf[1] = GameImage.loadImage("images/logo.png");
-        this.background = new Background("InfiniteBackground", bf, 0, 0, 0, 768, 480);
+        this.background = new Background("InfiniteBackground", bf, 0, 0, 0, 768,
+                480);
         this.map = new Map(mapName, 30, 768, 480, 0);
         this.enemies = transformList(FileLoader.loadEnemies(mapName));
         this.backgroundName = "";
@@ -73,13 +73,15 @@ public class Level implements Serializable {
         final BufferedImage[] bf = new BufferedImage[2];
         bf[0] = GameImage.loadImage("images/logo.png");
         bf[1] = GameImage.loadImage("images/logo.png");
-        this.background = new Background("InfiniteBackground", bf, 0, 0, 0, 768, 480);
+        this.background = new Background("InfiniteBackground", bf, 0, 0, 0, 768,
+                480);
         this.map = new Map(mapName, 30, 768, 480, difx);
         this.enemies = transformArray(enem);
         this.backgroundName = "";
     }
 
-    public Level(final String back, final String mapName, final int difx, final String[] enem) {
+    public Level(final String back, final String mapName, final int difx,
+            final String[] enem) {
         this.mapName = mapName;
         this.background = new Background("InfiniteBackground",
                 GameImage.loadFromFile(back, "tiles"), 0, 0, 0, 768, 480);
@@ -99,17 +101,17 @@ public class Level implements Serializable {
     }
 
     private ArrayList<Enemy> transformArray(final String[] array) {
-        ArrayList<Enemy> enemis = new ArrayList();
+        ArrayList<Enemy> enemies = new ArrayList();
         if (array != null) {
             for (int i = 0; i < array.length; i++) {
-                enemis.add(transformStringToEnemy(array[i].substring(1)));
+                enemies.add(transformStringToEnemy(array[i].substring(1)));
             }
         }
-        return enemis;
+        return enemies;
     }
 
     private Enemy transformStringToEnemy(final String s) {
-        Enemy e;
+        Enemy enemy;
         System.out.println(s);
         int d = Engine.dificultad;
         int n = s.charAt(0) - '0';
@@ -118,33 +120,37 @@ public class Level implements Serializable {
         System.out.println("Y: " + y);
         switch (n) {
             case 0:
-                e = new EnemyRobot(x, y, 20 * d, 50 * d, 1000 / d, 10000 * d);
+                enemy =
+                        new EnemyRobot(x, y, 20 * d, 50 * d, 1000 / d, 10000 * d);
                 break;
             case 1:
-                e = new EnemyChainRobot(x, y, 25 * d, 60 * d, 1000 / d, 10000 * d);
+                enemy = new EnemyChainRobot(x, y, 25 * d, 60 * d, 1000 / d,
+                        10000 * d);
                 break;
             case 2:
-                e = new EnemyClawRobot(x, y, 30 * d, 70 * d, 1000 / d, 10000 * d);
+                enemy = new EnemyClawRobot(x, y, 30 * d, 70 * d, 1000 / d,
+                        10000 * d);
                 break;
             case 3:
-                e = new EnemyMedusa(x, y, 5 * d, 10 * d, 1000 / d, 2000 * d);
+                enemy = new EnemyMedusa(x, y, 5 * d, 10 * d, 1000 / d, 2000 * d);
                 break;
             case 4:
-                e = new EnemyRueda(x, y, 5 * d, 15 * d, 1000 / d, 2000 * d);
+                enemy = new EnemyRueda(x, y, 5 * d, 15 * d, 1000 / d, 2000 * d);
                 break;
             case 6:
-                e = new EnemySuperSpider(x, y, 15 * d, 30 * d, 1000 / d, 15000 * d);
+                enemy = new EnemySuperSpider(x, y, 15 * d, 30 * d, 1000 / d,
+                        15000 * d);
                 break;
             case 7:
-                e = new EnemyTank(x, y, 10 * d, 25 * d, 1000 / d, 3000 * d);
+                enemy = new EnemyTank(x, y, 10 * d, 25 * d, 1000 / d, 3000 * d);
                 break;
             default:
-                e = new EnemySpider(x, y, 7 * d, 20 * d, 1000 / d, 5000 * d);
+                enemy = new EnemySpider(x, y, 7 * d, 20 * d, 1000 / d, 5000 * d);
         }
-        return e;
+        return enemy;
     }
 
-    public void paintEnemies(Graphics g) {
+    public void paintEnemies(final Graphics g) {
         //Este ciclo es nuestro garbageCollector de enemigos.
         if (!enemies.isEmpty()) {
             for (int i = 0; i < enemies.size(); i++) { //recorremos la lista de enemigos.
@@ -153,7 +159,9 @@ public class Level implements Serializable {
                     if (bad.isActiveOnScreen(map.getDifx())) {
                         try {
                             Engine.hpaux += bad.damageDeal(Engine.hacker);
-                            g.drawImage(bad.getEnemySecuence(), bad.getScreenXPosition(), (int) bad.getYposition(), null);
+                            g.drawImage(bad.getEnemySecuence(), bad
+                                    .getScreenXPosition(), (int) bad
+                                            .getYposition(), null);
                         } catch (Exception e) {
                             System.out.println("An enemy cannot be painted");
                         }
@@ -169,81 +177,41 @@ public class Level implements Serializable {
         return mapName;
     }
 
-    public void setMapName(String mapName) {
-        this.mapName = mapName;
-    }
-
-    public int getLifes() {
-        return lifes;
-    }
-
-    public void setLifes(int lifes) {
-        this.lifes = lifes;
-    }
-
-    public Background getBackground() {
-        return background;
-    }
-
-    public Hacker getHacker() {
-        return hacker;
-    }
-
     public Map getMap() {
         return map;
     }
 
-    public Weapon getWeapon() {
-        return weapon;
-    }
-
-    public void setBackground(Background background) {
-        this.background = background;
-    }
-
-    public void setHacker(Hacker hacker) {
-        this.hacker = hacker;
-    }
-
-    public void setMap(Map map) {
-        this.map = map;
-    }
-
-    public void setWeapon(Weapon weapon) {
-        this.weapon = weapon;
-    }
-
     //Los siguientes 2 métodos, llaman al método de background.
-    public void moveViewPortLeft(int n) {
+    public void moveViewPortLeft(final int n) {
         background.moveViewPortLeft(n);
     }
 
-    public void moveViewPortRight(int n) {
+    public void moveViewPortRight(final int n) {
         background.moveViewPortRight(n);
     }
 
     //Estos metodos son para el mapa...
-    public int canGoLeft(AnimatedObject ao, int n) {
+    public int canGoLeft(final AnimatedObject ao, final int n) {
         return map.canGoLeft(ao, n);
     }
 
-    public int canGoRight(AnimatedObject ao, int n) {
+    public int canGoRight(final AnimatedObject ao, final int n) {
         return map.canGoRight(ao, n);
     }
 
-    public int canGoUp(AnimatedObject ao, int n) {
+    public int canGoUp(final AnimatedObject ao, final int n) {
         return map.canGoUp(ao, n);
     }
 
-    public int canGoDown(AnimatedObject ao, int n) {
+    public int canGoDown(final AnimatedObject ao, final int n) {
         return map.canGoDown(ao, n);
     }
 
-    public void moveVisibleMatrixLeft(int dx) {
+    public void moveVisibleMatrixLeft(final int dx) {
         map.moveVisibleMatrixLeft(dx);
     }
 
-    public void moveVisibleMatrixRight(int dx) {
+    public void moveVisibleMatrixRight(final int dx) {
         map.moveVisibleMatrixRight(dx);
     }
     //Metodos de imagenes
@@ -258,7 +226,7 @@ public class Level implements Serializable {
         return map.getImage();
     }
 
-    public boolean canGoUpBall(AnimatedObject ao) {
+    public boolean canGoUpBall(final AnimatedObject ao) {
         return map.canGoUpBall(ao);
     }
 
@@ -266,11 +234,7 @@ public class Level implements Serializable {
         return map.getDifx();
     }
 
-    public void setDifX(int x) {
-        map.difx = x;
-    }
-
-    public void addObserver(Observer o) {
+    public void addObserver(final Observer o) {
         map.addObserver(o);
     }
 
@@ -286,11 +250,7 @@ public class Level implements Serializable {
         return s;
     }
 
-    public void setEnemiesList(ArrayList<Enemy> enemies) {
-        this.enemies = enemies;
-    }
-    
-    public ArrayList<Enemy> getEnemies(){
+    public ArrayList<Enemy> getEnemies() {
         return this.enemies;
     }
 }
