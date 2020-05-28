@@ -33,7 +33,7 @@ public class Save implements Serializable{
         backName=Engine.level.getBackgroundName();
         hackerName = Engine.hacker.getName();
         estado=Engine.hacker.getState().ordinal();
-        challenge = Engine.cmd.challenge;
+        challenge = Engine.cmd.getChallenge();
         currentLevel = Map.nxtlvl;
         soundLevel = Engine.soundName;
     }

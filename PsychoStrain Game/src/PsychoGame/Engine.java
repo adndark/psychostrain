@@ -1,6 +1,7 @@
 //Engine.java
 package PsychoGame;
 
+import PsychoGame.console.Console;
 import PsychoGame.handheld.Weapon;
 import PsychoGame.level.Map;
 import PsychoGame.level.Level;
@@ -49,7 +50,7 @@ public class Engine {
         level.addObserver(window);
         hacker = new Hacker(selectedProfile, s.getPosY(), s.getEstado());
         cmd = new Console();
-        cmd.challenge = s.getChallenge();
+        cmd.setChallenge(s.getChallenge());
         lf = s.getLives();
         weapon = new Weapon();
         Map.nxtlvl = s.getCurrentLevel();

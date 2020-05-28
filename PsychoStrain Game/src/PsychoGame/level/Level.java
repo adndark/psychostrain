@@ -1,7 +1,7 @@
 // Level.java (Antes GameStage.java)
 package PsychoGame.level;
 
-import PsychoGame.Console;
+import PsychoGame.console.Console;
 import PsychoGame.Engine;
 import PsychoGame.Hacker;
 import PsychoGame.handheld.Weapon;
