@@ -16,10 +16,10 @@ public class Save implements Serializable{
     private boolean weapons[], challenge;
     public Save(){
         weapons = new boolean[4];
-        weapons[0] = Engine.weapon.gun;
-        weapons[1] = Engine.weapon.shotgun;
-        weapons[2] = Engine.weapon.rifle;
-        weapons[3] = Engine.weapon.grandelauncher;
+        weapons[0] = Engine.weapon.getGun();
+        weapons[1] = Engine.weapon.getShotgun();
+        weapons[2] = Engine.weapon.getRifle();
+        weapons[3] = Engine.weapon.getGrandelauncher();
         posY=(int)Engine.hacker.getYposition();
         difX=Engine.level.getDifX();
         shotgunammo=Engine.weapon.getShotgunAmmo();

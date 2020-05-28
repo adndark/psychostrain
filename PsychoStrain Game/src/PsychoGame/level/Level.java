@@ -4,7 +4,7 @@ package PsychoGame.level;
 import PsychoGame.Console;
 import PsychoGame.Engine;
 import PsychoGame.Hacker;
-import PsychoGame.Weapon;
+import PsychoGame.handheld.Weapon;
 import PsychoGame.enemy.EnemyTank;
 import PsychoGame.enemy.EnemySuperSpider;
 import PsychoGame.enemy.EnemySpider;
