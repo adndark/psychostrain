@@ -1,6 +1,7 @@
 //Engine.java
 package PsychoGame;
 
+import PsychoGame.hacker.Hacker;
 import PsychoGame.console.Console;
 import PsychoGame.handheld.Weapon;
 import PsychoGame.level.Map;

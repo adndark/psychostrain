@@ -1,5 +1,6 @@
-package PsychoGame;
+package PsychoGame.hacker;
 
+import PsychoGame.Engine;
 import PsychoGame.gameobject.AnimatedObject;
 import PsychoSystem.*;
 import java.awt.Graphics2D;
@@ -21,7 +22,6 @@ public class Hacker extends AnimatedObject {
     private BufferedImage[] hackerLegs;
     private Direction direction;
     private int actualHP;
-    private int legsSecuencePositionX = 0;
     private int shot;
     private int totalHP;
     private int Xstart = 0;
@@ -39,7 +39,7 @@ public class Hacker extends AnimatedObject {
         setHackerState(e);
     }
 
-    public void setState(State HackerState) {
+    public void setState(final State HackerState) {
         this.HackerState = HackerState;
     }
 
@@ -63,11 +63,11 @@ public class Hacker extends AnimatedObject {
         return actualHP;
     }
 
-    public void setTotalHP(int totalHP) {
+    public void setTotalHP(final int totalHP) {
         this.totalHP = totalHP;
     }
 
-    public void setDirection(Direction direccion) {
+    public void setDirection(final Direction direccion) {
         direction = direccion;
     }
 
@@ -84,7 +84,8 @@ public class Hacker extends AnimatedObject {
         final BufferedImage up = getActualImage();
         final BufferedImage down = getImageSecuenceLegs();
         final int width = Math.max(up.getWidth(), down.getWidth()); //Obtener cual imagen es la que mide mas de ancho
-        final BufferedImage bufferedImage = new BufferedImage(width, (up.getHeight()
+        final BufferedImage bufferedImage = new BufferedImage(width, (up
+                .getHeight()
                 + down.getHeight()) - 10, BufferedImage.TYPE_4BYTE_ABGR);
         final Graphics2D g = bufferedImage.createGraphics();
         g.drawImage(up, 0, 0, null); //Se dibuja la parte de arriba en la nueva imagen...
@@ -111,19 +112,22 @@ public class Hacker extends AnimatedObject {
     @Override
     public Rectangle getBounds() {
         if (isDucked) {
-            return new Rectangle((int) getXposition() + 31, (int) getYposition(), 25, 25);
+            return new Rectangle((int) getXposition() + 31, (int) getYposition(),
+                    25, 25);
         }
         if (this.direction == direction.FORWARD) {
-            return new Rectangle((int) getXposition() + 48, (int) getYposition() + 27, 54, 84);
+            return new Rectangle((int) getXposition() + 48,
+                    (int) getYposition() + 27, 54, 84);
         }
-        return new Rectangle((int) getXposition() + 20, (int) getYposition() + 27, 58, 84);
+        return new Rectangle((int) getXposition() + 20,
+                (int) getYposition() + 27, 58, 84);
     }
 
-    public void setActualHP(int hp) {
+    public void setActualHP(final int hp) {
         this.actualHP = hp;
     }
 
-    public boolean setFireImage(Point a) {
+    public boolean setFireImage(final Point a) {
         if ((shot = shot % 20) % 2 == 0) {
             switch (Engine.getI()) {
                 case 0:
@@ -188,7 +192,7 @@ public class Hacker extends AnimatedObject {
         }
     }
 
-    private void setHackerState(int e) {
+    private void setHackerState(final int e) {
         if (e == 3) {
             this.HackerState = State.DUCKING;
             this.isDucked = true;
@@ -267,5 +271,4 @@ public class Hacker extends AnimatedObject {
         }
         return hackerLegs[Xstart];
     }
-
 }

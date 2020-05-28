@@ -3,8 +3,6 @@ package PsychoGame.level;
 
 import PsychoGame.console.Console;
 import PsychoGame.Engine;
-import PsychoGame.Hacker;
-import PsychoGame.handheld.Weapon;
 import PsychoGame.enemy.EnemyTank;
 import PsychoGame.enemy.EnemySuperSpider;
 import PsychoGame.enemy.EnemySpider;
@@ -29,11 +27,8 @@ public class Level implements Serializable {
 
     private Background background;
     private Map map;
-    private Hacker hacker;
-    private Weapon weapon;
     private ArrayList<Enemy> enemies;
     private Console cmd;
-    private int lifes;
     private String mapName;
     private String backgroundName;
 

@@ -3,7 +3,7 @@ package PsychoGame.level;
 
 import PsychoGame.console.Console;
 import PsychoGame.Engine;
-import PsychoGame.Hacker;
+import PsychoGame.hacker.Hacker;
 import PsychoGame.gameobject.AnimatedObject;
 import PsychoSystem.FileLoader;
 import java.awt.Color;
@@ -14,7 +14,7 @@ import java.util.HashMap;
 import java.util.Observable;
 
 //  PsySoft Team 2008
-//       (Manuel Espinoza, Alberto Zorrilla, Guillermo Leon y Arquimides Diaz)
+//       (Manuel Espinoza, Alberto Zorrilla, Guillermo Leon y Arquimedes Diaz)
 public class Map extends Observable {
 
     private int scaleTile;
