@@ -179,7 +179,7 @@ public class Map extends Observable {
         if (x) {
             if (i == 8) {
 
-                mails = FileLoader.loadMails("mails.txt");
+                mails = FileLoader.loadMails("configurations/mails/mails.txt");
                 Engine.cmd.setEmail("hq@bash.org", mails.get(mailCounter));
                 mailCounter++;
                 set00Tiles(j, 8);
