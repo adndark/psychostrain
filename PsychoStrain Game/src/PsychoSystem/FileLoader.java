@@ -31,7 +31,7 @@ public class FileLoader {
         int i = 0;
         String aux;
         try {
-            BufferedReader getCfgFile = new BufferedReader(new FileReader("defaultConfig.cfg")); //gameConfig.cfg DUH
+            BufferedReader getCfgFile = new BufferedReader(new FileReader("configurations/keyboard/defaultConfig.cfg")); //gameConfig.cfg DUH
             try {
                 while ((aux = getCfgFile.readLine()) != null) {
                     if (!(aux.charAt(0) == '#' || aux.charAt(0) == ' ')) {
@@ -159,7 +159,7 @@ public class FileLoader {
     public static void saveConfig(HashMap<String, Integer> hashMap) {
         PrintWriter setCfgFile;
         try {
-            setCfgFile = new PrintWriter(new FileWriter("defaultConfig.cfg"));
+            setCfgFile = new PrintWriter(new FileWriter("configuration/keyboard/defaultConfig.cfg"));
             setCfgFile.println("# Auto-Generated Config File...");
             setCfgFile.println("# Se recomienda usar el sistema para modificar las opciones");
             setCfgFile.println("# Si se modifica a mano: \n#");
