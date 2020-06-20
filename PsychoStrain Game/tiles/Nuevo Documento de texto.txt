@@ -1,5 +1,0 @@
-#######################
-## tiles especiales invisibles
-## 8--> tile de control para mails
-## 17-->tile para cambio de mapa
-## 80-->""

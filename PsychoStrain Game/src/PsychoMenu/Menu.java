@@ -25,7 +25,7 @@ public class Menu extends javax.swing.JFrame {
 
     private boolean shouldCloseMenu;
     //este boolean es una maravilla, sirve para puro flow control, salud!
-    public static Sound sound = new Sound("sounds/Menu.mid");
+    public static Sound sound = new Sound("resources/sounds/Menu.mid");
     //
     private ProfilePanel profiles;
     private PMaps panelMapas;
@@ -35,7 +35,7 @@ public class Menu extends javax.swing.JFrame {
         Engine.loadLastProfile();
         control = true;
         initComponents();
-        drawLogo("logo/Logo.png");
+        drawLogo("resources/logo/Logo.png");
         setCrazy();
         sound.play();
         shouldCloseMenu = false;
@@ -45,7 +45,7 @@ public class Menu extends javax.swing.JFrame {
     public void setCrazy() {
         try {
             Font crazy = Font.createFont(Font.TRUETYPE_FONT, new File(
-                    "fonts/byte.ttf"));
+                    "resources/fonts/byte.ttf"));
             crazy = crazy.deriveFont(30f);
             newGameLbl.setFont(crazy);
             profilesLbl.setFont(crazy);

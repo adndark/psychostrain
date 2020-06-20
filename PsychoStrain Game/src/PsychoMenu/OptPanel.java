@@ -33,7 +33,7 @@ public class OptPanel extends javax.swing.JFrame {
     public void setCrazy() {
         try {
             Font crazy = Font.createFont(Font.TRUETYPE_FONT, new File(
-                    "fonts/byte.ttf"));
+                    "resources/fonts/byte.ttf"));
             crazy = crazy.deriveFont(14f);
             jLabel2.setFont(crazy);
             jLabel1.setFont(crazy);

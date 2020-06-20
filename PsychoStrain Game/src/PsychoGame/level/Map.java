@@ -44,7 +44,7 @@ public class Map extends Observable {
                 ? windowHeight / scaleTile : windowHeight / scaleTile + 1;
         this.noTilesWidth++;
         this.xi = difx = 0;
-        this.tiles = FileLoader.getTiles("tiles/tileList.cfg");
+        this.tiles = FileLoader.getTiles("resources/tiles/tileList.cfg");
         this.mapMatrix = FileLoader.getMap(mapName);
         //enemies.add(new EnemyChainRobot("EnemyChainRobot.txt", "enemy/ChainRobot", 3000, 100, 10));
         //enemies.add(new EnemyClawRobot("EnemyClawRobot.txt", "enemy/ClawRobot", 3000, 100, 10));
@@ -66,7 +66,7 @@ public class Map extends Observable {
         this.noTilesWidth++;
         this.difx = diffx;
         this.xi = (difx / scaleTile);
-        this.tiles = FileLoader.getTiles("tiles/tileList.cfg");
+        this.tiles = FileLoader.getTiles("resources/tiles/tileList.cfg");
         this.mapMatrix = FileLoader.getMap(mapName);
         //enemies.add(new EnemyChainRobot("EnemyChainRobot.txt", "enemy/ChainRobot", 1000, 100, 10));
         //enemies.add(new EnemyClawRobot("EnemyClawRobot.txt", "enemy/ClawRobot", 1000, 100, 10));

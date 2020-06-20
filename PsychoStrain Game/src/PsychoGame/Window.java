@@ -67,10 +67,10 @@ public class Window extends javax.swing.JFrame implements
         setCrazy();
         // Originally createBufferStrategy used value 2
         createBufferStrategy(3);
-        lifeBar = GameImage.loadImage("sprites/misc/lifeBar.png");
-        notifyIcon = GameImage.loadImage("sprites/misc/notify.png");
-        message = GameImage.loadImage("sprites/misc/ifLol.png");
-        gameOver = GameImage.loadImage("sprites/misc/gameover.png");
+        lifeBar = GameImage.loadImage("resources/sprites/misc/lifeBar.png");
+        notifyIcon = GameImage.loadImage("resources/sprites/misc/notify.png");
+        message = GameImage.loadImage("resources/sprites/misc/ifLol.png");
+        gameOver = GameImage.loadImage("resources/sprites/misc/gameover.png");
         game = false;
         firstRun = false;
     }
@@ -87,7 +87,7 @@ public class Window extends javax.swing.JFrame implements
     private void setCrazy() {
         try {
             Font crazy = Font.createFont(Font.TRUETYPE_FONT, new File(
-                    "fonts/byte.ttf"));
+                    "resources/fonts/byte.ttf"));
             crazy = crazy.deriveFont(20.0f);
             this.setFont(crazy);
         } catch (FontFormatException ex) {

@@ -36,7 +36,7 @@ public class PMaps extends javax.swing.JFrame {
     public void setCrazy() {
         try {
             Font crazy = Font.createFont(Font.TRUETYPE_FONT, new File(
-                    "fonts/byte.ttf"));
+                    "resources/fonts/byte.ttf"));
             crazy = crazy.deriveFont(14.0f);
             this.setFont(crazy);
             cancelBtn.setFont(crazy);

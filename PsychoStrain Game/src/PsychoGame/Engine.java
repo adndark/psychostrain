@@ -89,8 +89,8 @@ public class Engine {
         window.addMouseListener(window);
         window.setVisible(true);
         currentWeapon = 1;
-        music = new Sound("sounds/Tutorial.mid");
-        soundName = "sounds/Tutorial.mid";
+        music = new Sound("resources/sounds/Tutorial.mid");
+        soundName = "resources/sounds/Tutorial.mid";
         music.play();
     }
 
@@ -112,9 +112,9 @@ public class Engine {
     }
 
     public static void setDefaults() {
-        music = new Sound("sounds/Tutorial.mid");
-        soundName = "sounds/Tutorial.mid";
-        loadLevel("configurations/level/Ribbon.txt", "maps/Tutorial.map", 300);
+        music = new Sound("resources/sounds/Tutorial.mid");
+        soundName = "resources/sounds/Tutorial.mid";
+        loadLevel("configurations/level/Ribbon.txt", "resources/maps/Tutorial.map", 300);
         lf = 3;
         window.setFirstRun();
         music.play();
@@ -127,9 +127,9 @@ public class Engine {
             }
             music = null;
         }
-        music = new Sound("sounds/Level1.mid");
-        soundName = "sounds/Level1.mid";
-        loadLevel("configurations/level/bglevel1.txt", "maps/Level1.map", 330);
+        music = new Sound("resources/sounds/Level1.mid");
+        soundName = "resources/sounds/Level1.mid";
+        loadLevel("configurations/level/bglevel1.txt", "resources/maps/Level1.map", 330);
         music.play();
         Map.nxtlvl++;
     }
@@ -141,9 +141,9 @@ public class Engine {
             }
             music = null;
         }
-        music = new Sound("sounds/Level2.mid");
-        soundName = "sounds/Level2.mid";
-        loadLevel("configurations/level/Ribbon.txt", "maps/Level2.map", 240);
+        music = new Sound("resources/sounds/Level2.mid");
+        soundName = "resources/sounds/Level2.mid";
+        loadLevel("configurations/level/Ribbon.txt", "resources/maps/Level2.map", 240);
         music.play();
         Map.nxtlvl++;
 
@@ -156,9 +156,9 @@ public class Engine {
             }
             music = null;
         }
-        music = new Sound("sounds/Level3.mid");
-        soundName = "sounds/Level3.mid";
-        loadLevel("configurations/level/Ribbon.txt", "maps/Level3.map", 240);
+        music = new Sound("resources/sounds/Level3.mid");
+        soundName = "resources/sounds/Level3.mid";
+        loadLevel("configurations/level/Ribbon.txt", "resources/maps/Level3.map", 240);
         music.play();
         Map.nxtlvl++;
     }
@@ -170,9 +170,9 @@ public class Engine {
             }
             music = null;
         }
-        music = new Sound("sounds/Final.mid");
-        soundName = "sounds/Final.mid";
-        loadLevel("configurations/level/Ribbon.txt", "maps/Final.map", 240);
+        music = new Sound("resources/sounds/Final.mid");
+        soundName = "resources/sounds/Final.mid";
+        loadLevel("configurations/level/Ribbon.txt", "resources/maps/Final.map", 240);
         music.play();
         Map.nxtlvl++;
     }

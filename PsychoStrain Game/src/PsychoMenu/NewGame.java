@@ -45,7 +45,7 @@ public class NewGame extends javax.swing.JFrame {
     public void setCrazy() {
         try {
             Font crazy = Font.createFont(Font.TRUETYPE_FONT, new File(
-                    "fonts/byte.ttf"));
+                    "resources/fonts/byte.ttf"));
             crazy = crazy.deriveFont(14f);
             jRadioButton1.setFont(crazy);
             jRadioButton2.setFont(crazy);

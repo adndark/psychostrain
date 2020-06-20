@@ -249,7 +249,7 @@ public class FileLoader {
             try {
                 while ((aux = getCfgFile.readLine()) != null) {
                     if (!(aux.charAt(0) == '#' || aux.charAt(0) == ' ')) {
-                        hashMap.put(i, GameImage.loadImage("tiles/" + aux));
+                        hashMap.put(i, GameImage.loadImage("resources/tiles/" + aux));
                         i++;
                     }
                 }

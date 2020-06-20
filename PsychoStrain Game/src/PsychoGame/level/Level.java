@@ -54,8 +54,8 @@ public class Level implements Serializable {
     public Level(final String mapName) {
         this.mapName = mapName;
         final BufferedImage[] bf = new BufferedImage[2];
-        bf[0] = GameImage.loadImage("images/logo.png");
-        bf[1] = GameImage.loadImage("images/logo.png");
+        bf[0] = GameImage.loadImage("resources/images/logo.png");
+        bf[1] = GameImage.loadImage("resources/images/logo.png");
         this.background = new Background("InfiniteBackground", bf, 0, 0, 0, 768,
                 480);
         this.map = new Map(mapName, 30, 768, 480, 0);
@@ -66,8 +66,8 @@ public class Level implements Serializable {
     public Level(final String mapName, final int difx, final String[] enem) {
         this.mapName = mapName;
         final BufferedImage[] bf = new BufferedImage[2];
-        bf[0] = GameImage.loadImage("images/logo.png");
-        bf[1] = GameImage.loadImage("images/logo.png");
+        bf[0] = GameImage.loadImage("resources/images/logo.png");
+        bf[1] = GameImage.loadImage("resources/images/logo.png");
         this.background = new Background("InfiniteBackground", bf, 0, 0, 0, 768,
                 480);
         this.map = new Map(mapName, 30, 768, 480, difx);

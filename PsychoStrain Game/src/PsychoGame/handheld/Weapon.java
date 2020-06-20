@@ -67,12 +67,12 @@ public class Weapon {
         this.weaponSelection = new BufferedImage(500, 150,
                 BufferedImage.TYPE_4BYTE_ABGR);
         this.weapons = new BufferedImage[4];
-        this.weapons[0] = GameImage.loadImage("sprites/weapons/gun0test.png");
+        this.weapons[0] = GameImage.loadImage("resources/sprites/weapons/gun0test.png");
         this.weapons[1] = GameImage
-                .loadImage("sprites/weapons/shotgun0test.png");
-        this.weapons[2] = GameImage.loadImage("sprites/weapons/rifle0test.png");
+                .loadImage("resources/sprites/weapons/shotgun0test.png");
+        this.weapons[2] = GameImage.loadImage("resources/sprites/weapons/rifle0test.png");
         this.weapons[3] = GameImage.loadImage(
-                "sprites/weapons/granadelauncher0test.png");
+                "resources/sprites/weapons/granadelauncher0test.png");
         this.gun = true;
         this.rifle = false;
         this.shotgun = false;
@@ -195,23 +195,23 @@ public class Weapon {
     public void checkCursor() {
         switch (Engine.currentWeapon) {
             case 1:
-                Engine.setNewCursor("sprites/sights/mira.png");
+                Engine.setNewCursor("resources/sprites/sights/mira.png");
                 break;
             case 2:
                 if (getShotgun()) {
-                    Engine.setNewCursor("sprites/sights/miraShotgun.png");
+                    Engine.setNewCursor("resources/sprites/sights/miraShotgun.png");
                 }
                 break;
             case 3:
                 if (getRifle()) {
-                    Engine.setNewCursor("sprites/sights/miraRifle.png");
+                    Engine.setNewCursor("resources/sprites/sights/miraRifle.png");
                 }
                 break;
             case 4:
                 if (getGrandelauncher()) {
                     Engine
                             .setNewCursor(
-                                    "sprites/sights/miraGranadelauncher.png");
+                                    "resources/sprites/sights/miraGranadelauncher.png");
                 }
                 break;
         }

@@ -34,7 +34,7 @@ public class GameImage {
             Loadedimages = new BufferedImage[numImages];
             while ((data = entry.readLine()) != null) {
                 StringTokenizer st = new StringTokenizer(data);
-                Loadedimages[idx++] = loadImage("sprites/" + folder + "/" + st
+                Loadedimages[idx++] = loadImage("resources/sprites/" + folder + "/" + st
                         .nextToken());
             }
             return Loadedimages;
