@@ -1,11 +1,10 @@
-//GameObject.java
 package PsychoGame.gameobject;
 
 import PsychoSystem.GameImage;
 import java.awt.image.BufferedImage;
 
 //  PsySoft Team 2008
-//       (Manuel Espinoza, Alberto Zorrilla, Guillermo Leon y Arquimides Diaz)
+//       (Manuel Espinoza, Alberto Zorrilla, Guillermo Leon y Arquimedes Diaz)
 public abstract class GameObject {
 
     // Coordenadas en donde será pintado en la pantalla.
@@ -28,7 +27,8 @@ public abstract class GameObject {
         image = GameImage.loadImage(imageName);
     }
 
-    public GameObject(final String image, final double xPosition, final double yPosition) {
+    public GameObject(final String image, final double xPosition,
+            final double yPosition) {
         this.xPosition = xPosition;
         this.yPosition = yPosition;
         this.imageName = image;

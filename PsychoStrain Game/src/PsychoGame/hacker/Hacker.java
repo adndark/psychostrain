@@ -30,7 +30,8 @@ public class Hacker extends AnimatedObject {
 
     public Hacker(final String name, final int posY, final int e) {
         super("configurations/hacker/SamusUpper.txt", "hacker", 340, posY);
-        this.hackerLegs = GameImage.loadFromFile("configurations/hacker/SamusBottom.txt", "hacker");
+        this.hackerLegs = GameImage.loadFromFile(
+                "configurations/hacker/SamusBottom.txt", "hacker");
         this.isDucked = false;
         this.name = name;
         this.totalHP = actualHP = 0;//tomaremos en cuenta 0 como maximo y 200 como minimo jejeje

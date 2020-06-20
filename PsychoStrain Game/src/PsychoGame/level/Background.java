@@ -1,4 +1,3 @@
-//Background.java
 package PsychoGame.level;
 
 import java.awt.GraphicsConfiguration;
@@ -42,7 +41,8 @@ public class Background {
         int totalOffset = 0;
         for (int idx = 0; idx < this.numImages; idx++) {
             imageOffsets[idx] = totalOffset;
-            totalOffset += (direc == 1) ? images[idx].getHeight() : images[idx].getWidth();
+            totalOffset += (direc == 1) ? images[idx].getHeight() : images[idx]
+                    .getWidth();
         }
         imageOffsets[numImages] = totalOffset;
     }
@@ -96,11 +96,14 @@ public class Background {
     }
 
     public BufferedImage getImageRealisation() {
-        final GraphicsConfiguration graphicsConfiguration
-                = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration();
+        final GraphicsConfiguration graphicsConfiguration =
+                GraphicsEnvironment.getLocalGraphicsEnvironment()
+                        .getDefaultScreenDevice().getDefaultConfiguration();
 
-        final BufferedImage realisedImage = graphicsConfiguration.createCompatibleImage(
-                width, height, images[0].getColorModel().getTransparency());
+        final BufferedImage realisedImage = graphicsConfiguration
+                .createCompatibleImage(
+                        width, height, images[0].getColorModel()
+                                .getTransparency());
 
         final Graphics2D graphics2D = realisedImage.createGraphics();
         this.draw(graphics2D, 0, 0);
@@ -109,7 +112,8 @@ public class Background {
         return realisedImage;
     }
 
-    public void draw(final Graphics2D graphics2D, final int drawX, final int drawY) {
+    public void draw(final Graphics2D graphics2D, final int drawX,
+            final int drawY) {
         if (direc == 1) {
             drawVertical(graphics2D, drawX, drawY);
         } else {
@@ -117,7 +121,8 @@ public class Background {
         }
     }
 
-    public void drawHorizontal(final Graphics2D graphics2D, final int drawX, final int drawY) {
+    public void drawHorizontal(final Graphics2D graphics2D, final int drawX,
+            final int drawY) {
         // Validate the viewport to ensure it is within the bounds of the strip
         validateViewPort();
 
@@ -148,12 +153,14 @@ public class Background {
 
             // Wrap around the first image if we run off the end of the image strip
             drawOffset += drawWidth;
-            viewPortOffset = (viewPortOffset + drawWidth) % imageOffsets[numImages];
+            viewPortOffset =
+                    (viewPortOffset + drawWidth) % imageOffsets[numImages];
             currentImageIdx = (currentImageIdx + 1) % numImages;
         }
     }
 
-    public void drawVertical(final Graphics2D graphics2D, final int drawX, final int drawY) {
+    public void drawVertical(final Graphics2D graphics2D, final int drawX,
+            final int drawY) {
         // Validate the viewport to ensure it is within the bounds of the strip
         validateViewPort();
 
@@ -175,14 +182,18 @@ public class Background {
             }
 
             // Draw the current image at the correct offset within the graphics object
-            graphics2D.drawImage(images[currentImageIdx], drawX, drawY + drawOffset,
+            graphics2D.drawImage(images[currentImageIdx], drawX,
+                    drawY + drawOffset,
                     drawX + width, drawY + drawOffset + drawHeight, viewPortX,
-                    viewPortOffset - imageOffsets[currentImageIdx], viewPortX + width,
-                    viewPortOffset - imageOffsets[currentImageIdx] + drawHeight, null);
+                    viewPortOffset - imageOffsets[currentImageIdx],
+                    viewPortX + width,
+                    viewPortOffset - imageOffsets[currentImageIdx] + drawHeight,
+                    null);
 
             // Wrap around the first image if we run off the end of the image strip
             drawOffset += drawHeight;
-            viewPortOffset = (viewPortOffset + drawHeight) % imageOffsets[numImages];
+            viewPortOffset =
+                    (viewPortOffset + drawHeight) % imageOffsets[numImages];
             currentImageIdx = (currentImageIdx + 1) % numImages;
         }
     }

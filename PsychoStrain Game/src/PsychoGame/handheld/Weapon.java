@@ -1,4 +1,3 @@
-//Weapon.java
 package PsychoGame.handheld;
 
 import PsychoGame.Engine;

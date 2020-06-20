@@ -1,4 +1,3 @@
-//optPanel.java
 package PsychoMenu;
 
 import PsychoGame.Engine;

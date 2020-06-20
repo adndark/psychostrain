@@ -1,4 +1,3 @@
-//Enemy.java
 package PsychoGame.enemy;
 
 import PsychoGame.Engine;

@@ -5,13 +5,17 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.FontFormatException;
 import java.awt.Graphics;
-import java.awt.event.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.Observable;
 import java.util.Observer;
+import java.awt.event.MouseMotionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 //  PsySoft Team 2008
 //       (Manuel Espinoza, Alberto Zorrilla, Guillermo Leon y Arquimedes Diaz)
@@ -82,7 +86,8 @@ public class Window extends javax.swing.JFrame implements
 
     private void setCrazy() {
         try {
-            Font crazy = Font.createFont(Font.TRUETYPE_FONT, new File("fonts/byte.ttf"));
+            Font crazy = Font.createFont(Font.TRUETYPE_FONT, new File(
+                    "fonts/byte.ttf"));
             crazy = crazy.deriveFont(20.0f);
             this.setFont(crazy);
         } catch (FontFormatException ex) {
@@ -100,8 +105,10 @@ public class Window extends javax.swing.JFrame implements
         if (!game) {
             graphics.setColor(Color.BLACK);
             graphics.fillRect(0, 0, 768, 700);
-            graphics.drawImage(Engine.level.getBackgroundImageRealisation(), 0, 0, this);
-            graphics.drawImage(Engine.hacker.getImage(), (int) Engine.hacker.getXposition(),
+            graphics.drawImage(Engine.level.getBackgroundImageRealisation(), 0,
+                    0, this);
+            graphics.drawImage(Engine.hacker.getImage(), (int) Engine.hacker
+                    .getXposition(),
                     (int) Engine.hacker.getYposition(), this);
             graphics.drawImage(Engine.level.getMapImage(), 0, 0, this);
             graphics.setColor(Color.GREEN);

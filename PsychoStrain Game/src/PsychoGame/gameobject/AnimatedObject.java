@@ -2,13 +2,12 @@
 package PsychoGame.gameobject;
 
 import PsychoGame.Engine;
-import PsychoGame.gameobject.GameObject;
 import PsychoSystem.GameImage;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 
 //  PsySoft Team 2008
-//       (Manuel Espinoza, Alberto Zorrilla, Guillermo Leon y Arquimides Diaz)
+//       (Manuel Espinoza, Alberto Zorrilla, Guillermo Leon y Arquimedes Diaz)
 public abstract class AnimatedObject extends GameObject {
 
     protected BufferedImage[] objectSecuence;

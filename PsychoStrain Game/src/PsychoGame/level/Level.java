@@ -1,5 +1,5 @@
-// Level.java (Antes GameStage.java)
 package PsychoGame.level;
+// Level.java (Antes GameStage.java)
 
 import PsychoGame.console.Console;
 import PsychoGame.Engine;

@@ -10,7 +10,7 @@ import java.io.IOException;
 import javax.swing.ImageIcon;
 
 //  PsySoft Team 2008
-//       (Manuel Espinoza, Alberto Zorrilla, Guillermo Leon y Arquimides Diaz)
+//       (Manuel Espinoza, Alberto Zorrilla, Guillermo Leon y Arquimedes Diaz)
 public class Menu extends javax.swing.JFrame {
 
     private boolean inGame = false;

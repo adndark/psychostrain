@@ -1,8 +1,7 @@
-//FileLoader.java
 package PsychoSystem;
 
 //  PsySoft Team 2008
-//       (Manuel Espinoza, Alberto Zorrilla, Guillermo Leon y Arquimides Diaz)
+//       (Manuel Espinoza, Alberto Zorrilla, Guillermo Leon y Arquimedes Diaz)
 import PsychoGame.Engine;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
@@ -31,7 +30,8 @@ public class FileLoader {
         int i = 0;
         String aux;
         try {
-            BufferedReader getCfgFile = new BufferedReader(new FileReader("configurations/keyboard/defaultConfig.cfg")); //gameConfig.cfg DUH
+            BufferedReader getCfgFile = new BufferedReader(new FileReader(
+                    "configurations/keyboard/defaultConfig.cfg")); //gameConfig.cfg DUH
             try {
                 while ((aux = getCfgFile.readLine()) != null) {
                     if (!(aux.charAt(0) == '#' || aux.charAt(0) == ' ')) {
@@ -45,12 +45,14 @@ public class FileLoader {
                 JOptionPane.showMessageDialog(null, ex);
             } catch (NullPointerException ex) {
                 System.out.println("Error when reading file");
-                JOptionPane.showMessageDialog(null, "El archivo de configuracion esta mal formado\nSe cargaran los defaults para crear uno nuevo.");
+                JOptionPane.showMessageDialog(null,
+                        "El archivo de configuracion esta mal formado\nSe cargaran los defaults para crear uno nuevo.");
                 return hashMap;
             }
         } catch (FileNotFoundException ex) {
             System.out.println("Error when reading file");
-            JOptionPane.showMessageDialog(null, "No se encontro el archivo de configuracion! (" + ex + ")\nSe cargaran los defaults para crear uno nuevo.");
+            JOptionPane.showMessageDialog(null,
+                    "No se encontro el archivo de configuracion! (" + ex + ")\nSe cargaran los defaults para crear uno nuevo.");
             return hashMap;
         }
         return hashMap;
@@ -76,7 +78,8 @@ public class FileLoader {
                 JOptionPane.showMessageDialog(null, ex);
             } catch (NullPointerException ex) {
                 System.out.println(ex);
-                JOptionPane.showMessageDialog(null, "El archivo de configuracion esta mal formado\n"
+                JOptionPane.showMessageDialog(null,
+                        "El archivo de configuracion esta mal formado\n"
                         + "Asegurate que tiene solo " + configArray.length + " opciones");
             }
         } catch (FileNotFoundException ex) {
@@ -90,10 +93,12 @@ public class FileLoader {
         String aux, acum = "", tmp;
         int x = 0, y = 0, num = 0;
         try {
-            BufferedReader getCfgFile = new BufferedReader(new FileReader(fileName));
+            BufferedReader getCfgFile = new BufferedReader(new FileReader(
+                    fileName));
             try {
                 while ((aux = getCfgFile.readLine()) != null) {
-                    if (!(aux.charAt(0) == '#' || aux.charAt(0) == ' ' || aux.charAt(0) == '>')) {
+                    if (!(aux.charAt(0) == '#' || aux.charAt(0) == ' ' || aux
+                            .charAt(0) == '>')) {
                         acum += aux + ".";
                         y++;
                     }
@@ -107,7 +112,8 @@ public class FileLoader {
                 JOptionPane.showMessageDialog(null, ex);
             } catch (StringIndexOutOfBoundsException ex) {
                 System.out.println(ex);
-                JOptionPane.showMessageDialog(null, "Error en el archivo" + fileName + ": " + ex);
+                JOptionPane.showMessageDialog(null,
+                        "Error en el archivo" + fileName + ": " + ex);
             }
         } catch (FileNotFoundException ex) {
             System.out.println(ex);
@@ -159,12 +165,16 @@ public class FileLoader {
     public static void saveConfig(HashMap<String, Integer> hashMap) {
         PrintWriter setCfgFile;
         try {
-            setCfgFile = new PrintWriter(new FileWriter("configuration/keyboard/defaultConfig.cfg"));
+            setCfgFile = new PrintWriter(new FileWriter(
+                    "configuration/keyboard/defaultConfig.cfg"));
             setCfgFile.println("# Auto-Generated Config File...");
-            setCfgFile.println("# Se recomienda usar el sistema para modificar las opciones");
+            setCfgFile.println(
+                    "# Se recomienda usar el sistema para modificar las opciones");
             setCfgFile.println("# Si se modifica a mano: \n#");
-            setCfgFile.println("# Recuerda que las lineas que comienzan con # son comentarios\n#");
-            setCfgFile.println("# El orden extricto de las opciones es la siguiente:");
+            setCfgFile.println(
+                    "# Recuerda que las lineas que comienzan con # son comentarios\n#");
+            setCfgFile.println(
+                    "# El orden extricto de las opciones es la siguiente:");
             setCfgFile.println("#\t Tecla de Salto");
             setCfgFile.println(hashMap.get(configArray[0]));
             setCfgFile.println("#\t Tecla para Pararse");
@@ -196,10 +206,13 @@ public class FileLoader {
         try {
             setCfgFile = new PrintWriter(new FileWriter(s));
             setCfgFile.println("# Auto-Generated Config File...");
-            setCfgFile.println("# Se recomienda usar el sistema para modificar las opciones");
+            setCfgFile.println(
+                    "# Se recomienda usar el sistema para modificar las opciones");
             setCfgFile.println("# Si se modifica a mano: \n#");
-            setCfgFile.println("# Recuerda que las lineas que comienzan con # son comentarios\n#");
-            setCfgFile.println("# El orden extricto de las opciones es la siguiente:");
+            setCfgFile.println(
+                    "# Recuerda que las lineas que comienzan con # son comentarios\n#");
+            setCfgFile.println(
+                    "# El orden extricto de las opciones es la siguiente:");
             setCfgFile.println("#\t Tecla de Salto");
             setCfgFile.println(hashMap.get(configArray[0]));
             setCfgFile.println("#\t Tecla para Pararse");
@@ -231,7 +244,8 @@ public class FileLoader {
         int i = 1;
         String aux;
         try {
-            BufferedReader getCfgFile = new BufferedReader(new FileReader(fileName)); //archivo tileList
+            BufferedReader getCfgFile = new BufferedReader(new FileReader(
+                    fileName)); //archivo tileList
             try {
                 while ((aux = getCfgFile.readLine()) != null) {
                     if (!(aux.charAt(0) == '#' || aux.charAt(0) == ' ')) {
@@ -245,7 +259,8 @@ public class FileLoader {
                 JOptionPane.showMessageDialog(null, ex);
             } catch (NullPointerException ex) {
                 System.out.println(ex);
-                JOptionPane.showMessageDialog(null, "la lista de tiles esta mal formada\n");
+                JOptionPane.showMessageDialog(null,
+                        "la lista de tiles esta mal formada\n");
             }
         } catch (FileNotFoundException ex) {
             System.out.println(ex);
@@ -257,7 +272,8 @@ public class FileLoader {
     public static Object loadChallenge(String fileName) {
         Object obj = null;
         try {
-            ObjectInputStream objRead = new ObjectInputStream(new FileInputStream(fileName));
+            ObjectInputStream objRead = new ObjectInputStream(
+                    new FileInputStream(fileName));
             obj = objRead.readObject();
             objRead.close();
             return obj;
@@ -270,7 +286,8 @@ public class FileLoader {
 
     public static void saveChallenge(String fileName, Object obj) {
         try {
-            ObjectOutputStream saveObj = new ObjectOutputStream(new FileOutputStream(fileName));
+            ObjectOutputStream saveObj = new ObjectOutputStream(
+                    new FileOutputStream(fileName));
             saveObj.writeObject(obj);
             saveObj.flush();
             saveObj.close();
@@ -284,15 +301,24 @@ public class FileLoader {
         int i = 0;
         String aux;
         try {
-            BufferedReader getCfgFile = new BufferedReader(new FileReader(fileName));
+            BufferedReader getCfgFile = new BufferedReader(new FileReader(
+                    fileName));
             try {
                 while ((aux = getCfgFile.readLine()) != null) {
                     if (!(aux.charAt(0) == '#' || aux.charAt(0) == ' ')) {
                         aux = aux.replace("$", "\n\t");
                         if (aux.contains("%")) {
-                            String a = KeyEvent.getKeyText(Engine.staticOpt.getIzquierda()) + "-->Izquierda" + "\n\t" + KeyEvent.getKeyText(Engine.staticOpt.getDerecha()) + "-->Derecha" + "\n\t"
-                                    + KeyEvent.getKeyText(Engine.staticOpt.getAbajo()) + "-->Ducking" + "\n\t" + KeyEvent.getKeyText(Engine.staticOpt.getUp()) + "-->Arriba" + "\n\t"
-                                    + KeyEvent.getKeyText(Engine.staticOpt.getSalto()) + "-->Salto" + "\n\t" + KeyEvent.getKeyText(Engine.staticOpt.getCmd()) + "-->Consola";
+                            String a = KeyEvent.getKeyText(Engine.staticOpt
+                                    .getIzquierda()) + "-->Izquierda" + "\n\t" + KeyEvent
+                                            .getKeyText(Engine.staticOpt
+                                                    .getDerecha()) + "-->Derecha" + "\n\t"
+                                    + KeyEvent.getKeyText(Engine.staticOpt
+                                            .getAbajo()) + "-->Ducking" + "\n\t" + KeyEvent
+                                            .getKeyText(Engine.staticOpt.getUp()) + "-->Arriba" + "\n\t"
+                                    + KeyEvent.getKeyText(Engine.staticOpt
+                                            .getSalto()) + "-->Salto" + "\n\t" + KeyEvent
+                                            .getKeyText(Engine.staticOpt
+                                                    .getCmd()) + "-->Consola";
 
                             aux = aux.replace("%", "" + a);
 
@@ -307,12 +333,14 @@ public class FileLoader {
                 JOptionPane.showMessageDialog(null, ex);
             } catch (NullPointerException ex) {
                 System.out.println(ex);
-                JOptionPane.showMessageDialog(null, "El archivo de configuracion esta mal formado\nSe cargaran los defaults para crear uno nuevo.");
+                JOptionPane.showMessageDialog(null,
+                        "El archivo de configuracion esta mal formado\nSe cargaran los defaults para crear uno nuevo.");
                 return hashMap;
             }
         } catch (FileNotFoundException ex) {
             System.out.println(ex);
-            JOptionPane.showMessageDialog(null, "No se encontro el archivo de configuracion! (" + ex + ")\nSe cargaran los defaults para crear uno nuevo.");
+            JOptionPane.showMessageDialog(null,
+                    "No se encontro el archivo de configuracion! (" + ex + ")\nSe cargaran los defaults para crear uno nuevo.");
             return hashMap;
         }
         return hashMap;
@@ -348,7 +376,8 @@ public class FileLoader {
     public static void saveGame(String fileName) {
         PsychoSystem.Save s = new PsychoSystem.Save();
         try {
-            ObjectOutputStream saveObj = new ObjectOutputStream(new FileOutputStream(fileName));
+            ObjectOutputStream saveObj = new ObjectOutputStream(
+                    new FileOutputStream(fileName));
             saveObj.writeObject(s);
             saveObj.flush();
             saveObj.close();
@@ -360,7 +389,8 @@ public class FileLoader {
 
     public static PsychoSystem.Save loadGame(String fileName) {
         try {
-            ObjectInputStream objRead = new ObjectInputStream(new FileInputStream(fileName));
+            ObjectInputStream objRead = new ObjectInputStream(
+                    new FileInputStream(fileName));
             Save save = (Save) objRead.readObject();
             objRead.close();
             return save;
@@ -376,7 +406,8 @@ public class FileLoader {
         int i = 1;
         String aux;
         try {
-            BufferedReader getCfgFile = new BufferedReader(new FileReader("saved/profileList"));
+            BufferedReader getCfgFile = new BufferedReader(new FileReader(
+                    "saved/profileList"));
             try {
                 while ((aux = getCfgFile.readLine()) != null) {
                     if (!(aux.charAt(0) == '#' || aux.charAt(0) == ' ')) {
@@ -404,7 +435,8 @@ public class FileLoader {
         int i = 1;
         try {
             setCfgFile = new PrintWriter(new FileWriter("saved/profileList"));
-            setCfgFile.println("#\n# *Importante* NO MODIFICAR!\n# Para modificar profiles utiliza el menu del juego!\n#");
+            setCfgFile.println(
+                    "#\n# *Importante* NO MODIFICAR!\n# Para modificar profiles utiliza el menu del juego!\n#");
             while (!hashMap.isEmpty()) {
                 if (hashMap.containsKey(i)) {
                     String aux = hashMap.get(i);
