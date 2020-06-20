@@ -1,4 +1,3 @@
-//profilePanel.java
 package PsychoMenu;
 
 //Psysoft Team
@@ -28,7 +27,8 @@ public class ProfilePanel extends javax.swing.JFrame {
 
     public void setCrazy() {
         try {
-            Font crazy = Font.createFont(Font.TRUETYPE_FONT, new File("fonts/byte.ttf"));
+            Font crazy = Font.createFont(Font.TRUETYPE_FONT, new File(
+                    "fonts/byte.ttf"));
             crazy = crazy.deriveFont(14f);
             delBtn.setFont(crazy);
             jButton1.setFont(crazy);
@@ -292,7 +292,8 @@ public class ProfilePanel extends javax.swing.JFrame {
     }
 
     public void doLoad(String sav) {
-        Save s = FileLoader.loadGame("saved/" + Engine.selectedProfile + "/" + sav);
+        Save s = FileLoader.loadGame(
+                "saved/" + Engine.selectedProfile + "/" + sav);
         Engine.staticOpt.loadConfig();
         Engine.loadGame(s);
         Menu.setControl(false);
@@ -304,7 +305,9 @@ private void profileDelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN
     String val = "" + profileList.getSelectedValue();
     if (!val.equals("Default")) {
         DefaultListModel a = (DefaultListModel) profileList.getModel();
-        int choice = JOptionPane.showConfirmDialog(this, "Seguro que quieres eliminar este perfil y todo su contenido?", "Eliminar Perfil...", JOptionPane.OK_CANCEL_OPTION);
+        int choice = JOptionPane.showConfirmDialog(this,
+                "Seguro que quieres eliminar este perfil y todo su contenido?",
+                "Eliminar Perfil...", JOptionPane.OK_CANCEL_OPTION);
         if (choice == 0) {
             File dir = new File("saved/" + a.getElementAt(indx));
             if (deleteDirectory(dir)) {
@@ -324,13 +327,15 @@ private void profileDelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN
             profileList.setModel(a);
         }
     } else {
-        JOptionPane.showMessageDialog(null, "El perfil \"Default\" no puede ser Eliminado...");
+        JOptionPane.showMessageDialog(null,
+                "El perfil \"Default\" no puede ser Eliminado...");
     }
     profileList.setSelectedIndex(0);
 }//GEN-LAST:event_profileDelBtnActionPerformed
 
 private void newBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newBtnActionPerformed
-    String add = JOptionPane.showInputDialog(this, "Nombre del Perfil Nuevo?", null, 3);
+    String add = JOptionPane.showInputDialog(this, "Nombre del Perfil Nuevo?",
+            null, 3);
     if (!(listaProfiles.containsValue(add))) {
         DefaultListModel a = (DefaultListModel) profileList.getModel();
         File newdir = new File("saved/" + add);
@@ -338,7 +343,8 @@ private void newBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:
         a.addElement(add);
         profileList.setModel(a);
     } else {
-        JOptionPane.showMessageDialog(null, "El perfil " + add + " ya existe...");
+        JOptionPane
+                .showMessageDialog(null, "El perfil " + add + " ya existe...");
     }
     profileList.setSelectedIndex(0);
 }//GEN-LAST:event_newBtnActionPerformed
@@ -356,11 +362,15 @@ private void delBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:
 // TODO add your handling code here:
     int indx = savedList.getSelectedIndex();
     DefaultListModel a = (DefaultListModel) savedList.getModel();
-    int choice = JOptionPane.showConfirmDialog(this, "Seguro que quieres borrar este Save?", "Borrar Juego Salvado...", JOptionPane.OK_CANCEL_OPTION);
+    int choice = JOptionPane.showConfirmDialog(this,
+            "Seguro que quieres borrar este Save?", "Borrar Juego Salvado...",
+            JOptionPane.OK_CANCEL_OPTION);
     if (choice == 0) {
-        File dir = new File("saved/" + Engine.selectedProfile + "/" + a.getElementAt(indx));
+        File dir = new File("saved/" + Engine.selectedProfile + "/" + a
+                .getElementAt(indx));
         if (dir.delete()) {
-            JOptionPane.showMessageDialog(null, "Perfil y Juegos Salvados borrados...");
+            JOptionPane.showMessageDialog(null,
+                    "Perfil y Juegos Salvados borrados...");
             a.remove(indx);
         }
         if (a.getSize() == 0) {

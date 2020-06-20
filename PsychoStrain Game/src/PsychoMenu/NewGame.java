@@ -24,7 +24,9 @@ public class NewGame extends javax.swing.JFrame {
     public NewGame(Menu menu) {
         if (Engine.selectedProfile.equals("<No Profile Loaded>")) {
             ProfilePanel a = new ProfilePanel();
-            int n = JOptionPane.showConfirmDialog(this, "Deseas crear un nuevo perfil?", "Juego Nuevo", JOptionPane.YES_NO_OPTION, 3);
+            int n = JOptionPane.showConfirmDialog(this,
+                    "Deseas crear un nuevo perfil?", "Juego Nuevo",
+                    JOptionPane.YES_NO_OPTION, 3);
             if (n == 0) {
                 a.show();
                 this.dispose();
@@ -42,7 +44,8 @@ public class NewGame extends javax.swing.JFrame {
 
     public void setCrazy() {
         try {
-            Font crazy = Font.createFont(Font.TRUETYPE_FONT, new File("fonts/byte.ttf"));
+            Font crazy = Font.createFont(Font.TRUETYPE_FONT, new File(
+                    "fonts/byte.ttf"));
             crazy = crazy.deriveFont(14f);
             jRadioButton1.setFont(crazy);
             jRadioButton2.setFont(crazy);

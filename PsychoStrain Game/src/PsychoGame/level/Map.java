@@ -1,4 +1,3 @@
-//Map.java
 package PsychoGame.level;
 
 import PsychoGame.console.Console;

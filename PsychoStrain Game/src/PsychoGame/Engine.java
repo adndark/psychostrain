@@ -1,4 +1,3 @@
-//Engine.java
 package PsychoGame;
 
 import PsychoGame.hacker.Hacker;
@@ -22,7 +21,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 //  PsySoft Team 2008
-//       (Manuel Espinoza, Alberto Zorrilla, Guillermo Leon y Arquimides Diaz)
+//       (Manuel Espinoza, Alberto Zorrilla, Guillermo Leon y Arquimedes Diaz)
 public class Engine {
 
     public static Options staticOpt = new Options();
@@ -33,7 +32,8 @@ public class Engine {
     private static Menu menu;
     public static Weapon weapon;
     public static int i, hpaux, lf, currentWeapon, salto, abajo, derecha, izquierda, openCmd, pause, dificultad, auxright, auxleft;
-    public static boolean leftKey = false, rightKey = false, upKey = false, downKey = false, jumpKey = false;
+    public static boolean leftKey = false, rightKey = false, upKey = false, downKey =
+            false, jumpKey = false;
     public static Thread hilo = new Thread();
     public static int teta = 0, l = 0, lvl = 1;
     public static String selectedProfile = "<No Profile Loaded>", soundName;
@@ -45,7 +45,8 @@ public class Engine {
         if (s.getBackName().equals("")) {
             level = new Level(s.getMapName(), s.getDifX(), s.getEnemiesList());
         } else {
-            level = new Level(s.getBackName(), s.getMapName(), s.getDifX(), s.getEnemiesList());
+            level = new Level(s.getBackName(), s.getMapName(), s.getDifX(), s
+                    .getEnemiesList());
         }
         window = new Window();
         level.addObserver(window);
@@ -93,7 +94,8 @@ public class Engine {
         music.play();
     }
 
-    public static void loadLevel(String background, String mapPath, int HackerPosY) {
+    public static void loadLevel(String background, String mapPath,
+            int HackerPosY) {
         staticOpt.loadConfig();
         window = new Window();
         hacker = new Hacker(selectedProfile, HackerPosY, 0);
@@ -207,8 +209,10 @@ public class Engine {
     public static void setNewCursor(String nombreImagenCursor) {
         //El toolkit es usado para crear cursores customizables.
         //El metodo regresa la imagen cargada como una Image.
-        Image image = Toolkit.getDefaultToolkit().createImage(nombreImagenCursor);
-        Cursor transparentCursor = Toolkit.getDefaultToolkit().createCustomCursor(image, new Point(12, 12), "invisibleCursor");
+        Image image = Toolkit.getDefaultToolkit()
+                .createImage(nombreImagenCursor);
+        Cursor transparentCursor = Toolkit.getDefaultToolkit()
+                .createCustomCursor(image, new Point(12, 12), "invisibleCursor");
         window.setCursor(transparentCursor);
     }
 
@@ -291,7 +295,8 @@ public class Engine {
                     if (bad.isActiveOnScreen(level.getDifX())) {
                         Rectangle r = bad.getBounds();
                         if (r.contains(a)) {
-                            bad.setActualHP(bad.getActualHP() - (weapon.getWeaponPower()));
+                            bad.setActualHP(bad.getActualHP() - (weapon
+                                    .getWeaponPower()));
                         }
                     }
                 }

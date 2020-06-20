@@ -5,7 +5,7 @@ import PsychoGame.Engine;
 
 //  PsySoft Team 2008
 import java.awt.Font;
-//       (Manuel Espinoza, Alberto Zorrilla, Guillermo Leon y Arquimides Diaz)
+//       (Manuel Espinoza, Alberto Zorrilla, Guillermo Leon y Arquimedes Diaz)
 import java.io.File;
 
 public class OptPanel extends javax.swing.JFrame {
@@ -33,7 +33,8 @@ public class OptPanel extends javax.swing.JFrame {
 
     public void setCrazy() {
         try {
-            Font crazy = Font.createFont(Font.TRUETYPE_FONT, new File("fonts/byte.ttf"));
+            Font crazy = Font.createFont(Font.TRUETYPE_FONT, new File(
+                    "fonts/byte.ttf"));
             crazy = crazy.deriveFont(14f);
             jLabel2.setFont(crazy);
             jLabel1.setFont(crazy);

@@ -1,4 +1,3 @@
-//Menu.java
 package PsychoMenu;
 
 import PsychoGame.Engine;
@@ -23,7 +22,7 @@ public class Menu extends javax.swing.JFrame {
     private static String optArray[];
     //odio los arrays, si descomento la linea que usa el array en startGame OMFG NULLPOINTEREXCEPTION
     private static boolean control;
-    
+
     private boolean shouldCloseMenu;
     //este boolean es una maravilla, sirve para puro flow control, salud!
     public static Sound sound = new Sound("sounds/Menu.mid");
@@ -45,7 +44,8 @@ public class Menu extends javax.swing.JFrame {
     //pone la fuente chingona
     public void setCrazy() {
         try {
-            Font crazy = Font.createFont(Font.TRUETYPE_FONT, new File("fonts/byte.ttf"));
+            Font crazy = Font.createFont(Font.TRUETYPE_FONT, new File(
+                    "fonts/byte.ttf"));
             crazy = crazy.deriveFont(30f);
             newGameLbl.setFont(crazy);
             profilesLbl.setFont(crazy);
@@ -68,7 +68,8 @@ public class Menu extends javax.swing.JFrame {
     //dibuja el chingonsisimo logo
     private void drawLogo(String s) {
         ImageIcon icon = new ImageIcon(s);
-        icon.setImage(icon.getImage().getScaledInstance(gameLogo.getWidth(), gameLogo.getHeight(), 0));
+        icon.setImage(icon.getImage().getScaledInstance(gameLogo.getWidth(),
+                gameLogo.getHeight(), 0));
         gameLogo.setIcon(icon);
     }
 
@@ -83,14 +84,14 @@ public class Menu extends javax.swing.JFrame {
         System.out.println("Setting control status to" + status);
         control = status;
     }
-    
-    public synchronized void setShouldCloseMenu(boolean shouldCloseMenu){
+
+    public synchronized void setShouldCloseMenu(boolean shouldCloseMenu) {
         System.out.println("Setting close menu to " + shouldCloseMenu);
         this.shouldCloseMenu = shouldCloseMenu;
         System.out.println(this.shouldCloseMenu);
     }
-    
-    public synchronized boolean getShouldCloseMenu(){
+
+    public synchronized boolean getShouldCloseMenu() {
         //System.out.println("getShouldCloseMenu " + this.shouldCloseMenu);
         return this.shouldCloseMenu;
     }
