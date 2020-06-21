@@ -6,6 +6,7 @@ import PsychoGame.Engine;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -17,6 +18,9 @@ import java.io.InputStreamReader;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.StringTokenizer;
@@ -386,6 +390,14 @@ public class FileLoader {
     }
 
     public static HashMap getProfiles() {
+        
+        boolean fileExist = fileExist("saved/profileList");
+        if(!fileExist) {
+            // Create directory
+            System.out.println("Creating profile file structure");
+            createProfileFileStructure();
+        }
+        
         HashMap<Integer, String> hashMap = new HashMap();
         int i = 1;
         String aux;
@@ -409,6 +421,34 @@ public class FileLoader {
             JOptionPane.showMessageDialog(null, ex);
         }
         return hashMap;
+    }
+    
+    private static boolean fileExist(String dirpath) {
+        File file = new File(dirpath);
+        return file.exists();
+    }
+    
+    private static void createProfileFileStructure(){
+        createDirectory("saved");
+        createFile("saved/profileList");
+    }
+    
+    private static void createDirectory(String dirPath) {
+        Path path = Paths.get(dirPath);
+        try {
+            Files.createDirectories(path);
+        } catch (IOException ex) {
+            System.out.println("Error creating directory " + ex);
+        }
+    }
+    
+    private static void createFile(String filename) {
+        File file = new File(filename);
+        try {
+            file.createNewFile();
+        } catch (IOException ex) {
+            System.out.println("Error creating file " + filename + " " + ex);
+        }
     }
 
     public static void saveProfiles(HashMap<Integer, String> hashMap) {
