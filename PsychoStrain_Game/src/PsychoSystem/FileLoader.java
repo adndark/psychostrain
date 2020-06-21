@@ -6,6 +6,7 @@ import PsychoGame.Engine;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -93,8 +94,9 @@ public class FileLoader {
         String aux, acum = "", tmp;
         int x = 0, y = 0, num = 0;
         try {
+            File file = getFile(fileName);
             BufferedReader getCfgFile = new BufferedReader(new FileReader(
-                    fileName));
+                    file));
             try {
                 while ((aux = getCfgFile.readLine()) != null) {
                     if (!(aux.charAt(0) == '#' || aux.charAt(0) == ' ' || aux
@@ -149,7 +151,8 @@ public class FileLoader {
     public static ArrayList<String> loadEnemies(String fileName) {
         ArrayList<String> enemies = new ArrayList();
         try {
-            BufferedReader fileIn = new BufferedReader(new FileReader(fileName));
+            File file = getFile(fileName);
+            BufferedReader fileIn = new BufferedReader(new FileReader(file));
             String aux = "";
             while ((aux = fileIn.readLine()) != null) {
                 if (aux.charAt(0) == '>') {
@@ -244,8 +247,8 @@ public class FileLoader {
         int i = 1;
         String aux;
         try {
-            BufferedReader getCfgFile = new BufferedReader(new FileReader(
-                    fileName)); //archivo tileList
+            File file = getFile(fileName);
+            BufferedReader getCfgFile = new BufferedReader(new FileReader(file)); //archivo tileList
             try {
                 while ((aux = getCfgFile.readLine()) != null) {
                     if (!(aux.charAt(0) == '#' || aux.charAt(0) == ' ')) {
@@ -450,5 +453,17 @@ public class FileLoader {
             System.out.println(ex);
             JOptionPane.showMessageDialog(null, ex);
         }
+    }
+    
+    private static File getFile(String fileName) {
+
+        File file = new File(
+                FileLoader.class
+                        .getClassLoader()
+                        .getResource(fileName)
+                        .getFile()
+        );
+        return file;
+
     }
 }

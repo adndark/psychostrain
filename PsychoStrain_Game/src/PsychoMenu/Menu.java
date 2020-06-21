@@ -72,8 +72,21 @@ public class Menu extends javax.swing.JFrame {
     }
 
     //dibuja el chingonsisimo logo
-    private void drawLogo(String s) {
-        ImageIcon icon = new ImageIcon(s);
+    private void drawLogo(String imagePath) {
+        
+        File file = null;
+        ImageIcon icon = null;
+        try {
+            file = new File(
+                    getClass()
+                            .getClassLoader()
+                            .getResource(imagePath)
+                            .getFile()
+            );
+        icon = new ImageIcon(file.getCanonicalPath());
+        } catch (IOException ex) {
+            System.out.println("Error reading file " + ex);
+        }
         icon.setImage(icon.getImage().getScaledInstance(gameLogo.getWidth(),
                 gameLogo.getHeight(), 0));
         gameLogo.setIcon(icon);

@@ -14,7 +14,13 @@ public class GameImage {
 
     public static BufferedImage loadImage(String nameImage) {
         try {
-            BufferedImage i = ImageIO.read(new File(nameImage));
+            File file = new File(
+                GameImage.class
+                        .getClassLoader()
+                        .getResource(nameImage)
+                        .getFile()
+            );
+            BufferedImage i = ImageIO.read(file);
             return i;
         } catch (Exception e) {
             System.out.print("Error loading method " + nameImage + "\n");

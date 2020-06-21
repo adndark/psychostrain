@@ -86,8 +86,13 @@ public class Window extends javax.swing.JFrame implements
 
     private void setCrazy() {
         try {
-            Font crazy = Font.createFont(Font.TRUETYPE_FONT, new File(
-                    "resources/fonts/byte.ttf"));
+            File file = new File(
+                    getClass()
+                            .getClassLoader()
+                            .getResource("resources/fonts/byte.ttf")
+                            .getFile()
+            );
+            Font crazy = Font.createFont(Font.TRUETYPE_FONT, file);
             crazy = crazy.deriveFont(20.0f);
             this.setFont(crazy);
         } catch (FontFormatException ex) {
