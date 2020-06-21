@@ -387,7 +387,6 @@ public class Engine {
     }
 
     public static void keyRefresh(int keyCode, boolean pressed) {
-        System.out.println("Key pressed" + keyCode);
         if (keyCode == staticOpt.getSalto()) {
             jumpKey = pressed;
         } else if (keyCode == staticOpt.getAbajo()) {

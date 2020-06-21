@@ -1,7 +1,6 @@
 package PsychoGame.level;
 // Level.java (Antes GameStage.java)
 
-import PsychoGame.console.Console;
 import PsychoGame.Engine;
 import PsychoGame.enemy.EnemyTank;
 import PsychoGame.enemy.EnemySuperSpider;
@@ -22,14 +21,15 @@ import java.awt.Graphics;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Observer;
+import java.util.stream.Collectors;
+import java.util.List;
 
 public class Level implements Serializable {
 
-    private Background background;
-    private Map map;
-    private ArrayList<Enemy> enemies;
-    private Console cmd;
-    private String mapName;
+    private final Background background;
+    private final Map map;
+    private final String mapName;
+    private List<Enemy> enemies;
     private String backgroundName;
 
     public static Options staticOpt = new Options();
@@ -108,64 +108,79 @@ public class Level implements Serializable {
     private Enemy transformStringToEnemy(final String s) {
         Enemy enemy;
         System.out.println(s);
-        int d = Engine.dificultad;
-        int n = s.charAt(0) - '0';
-        int x = Integer.parseInt(s.substring(4));
-        int y = Integer.parseInt(s.substring(1, 4));
-        System.out.println("Y: " + y);
-        switch (n) {
+        int dificultad = Engine.dificultad;
+        int enemyType = s.charAt(0) - '0';
+        int xPosition = Integer.parseInt(s.substring(4));
+        int yPosition = Integer.parseInt(s.substring(1, 4));
+        System.out.println("X: " + xPosition);
+        System.out.println("Y: " + yPosition);
+        switch (enemyType) {
             case 0:
                 enemy =
-                        new EnemyRobot(x, y, 20 * d, 50 * d, 1000 / d, 10000 * d);
+                        new EnemyRobot(xPosition, yPosition, 20 * dificultad,
+                                50 * dificultad, 1000 / dificultad,
+                                10000 * dificultad);
                 break;
             case 1:
-                enemy = new EnemyChainRobot(x, y, 25 * d, 60 * d, 1000 / d,
-                        10000 * d);
+                enemy = new EnemyChainRobot(xPosition, yPosition,
+                        25 * dificultad, 60 * dificultad, 1000 / dificultad,
+                        10000 * dificultad);
                 break;
             case 2:
-                enemy = new EnemyClawRobot(x, y, 30 * d, 70 * d, 1000 / d,
-                        10000 * d);
+                enemy =
+                        new EnemyClawRobot(xPosition, yPosition, 30 * dificultad,
+                                70 * dificultad, 1000 / dificultad,
+                                10000 * dificultad);
                 break;
             case 3:
-                enemy = new EnemyMedusa(x, y, 5 * d, 10 * d, 1000 / d, 2000 * d);
+                enemy = new EnemyMedusa(xPosition, yPosition, 5 * dificultad,
+                        10 * dificultad, 1000 / dificultad, 2000 * dificultad);
                 break;
             case 4:
-                enemy = new EnemyRueda(x, y, 5 * d, 15 * d, 1000 / d, 2000 * d);
+                enemy = new EnemyRueda(xPosition, yPosition, 5 * dificultad,
+                        15 * dificultad, 1000 / dificultad, 2000 * dificultad);
                 break;
             case 6:
-                enemy = new EnemySuperSpider(x, y, 15 * d, 30 * d, 1000 / d,
-                        15000 * d);
+                enemy = new EnemySuperSpider(xPosition, yPosition,
+                        15 * dificultad, 30 * dificultad, 1000 / dificultad,
+                        15000 * dificultad);
                 break;
             case 7:
-                enemy = new EnemyTank(x, y, 10 * d, 25 * d, 1000 / d, 3000 * d);
+                enemy = new EnemyTank(xPosition, yPosition, 10 * dificultad,
+                        25 * dificultad, 1000 / dificultad, 3000 * dificultad);
                 break;
             default:
-                enemy = new EnemySpider(x, y, 7 * d, 20 * d, 1000 / d, 5000 * d);
+                enemy = new EnemySpider(xPosition, yPosition, 7 * dificultad,
+                        20 * dificultad, 1000 / dificultad, 5000 * dificultad);
         }
         return enemy;
     }
 
     public void paintEnemies(final Graphics g) {
+
         //Este ciclo es nuestro garbageCollector de enemigos.
-        if (!enemies.isEmpty()) {
-            for (int i = 0; i < enemies.size(); i++) { //recorremos la lista de enemigos.
-                Enemy bad = enemies.get(i);
-                if (bad.isAlive()) {
-                    if (bad.isActiveOnScreen(map.getDifx())) {
-                        try {
-                            Engine.hpaux += bad.damageDeal(Engine.hacker);
-                            g.drawImage(bad.getEnemySecuence(), bad
-                                    .getScreenXPosition(), (int) bad
-                                            .getYposition(), null);
-                        } catch (Exception e) {
-                            System.out.println("An enemy cannot be painted");
-                        }
-                    }
-                } else {
-                    enemies.remove(i);
+        // Remueve enemigos que ya no estan vivos
+        enemies = enemies.stream().filter(enemy -> enemy.isAlive()).collect(
+                Collectors.toList());
+
+        // Si la list esta vacia no hay enemigos que mostrar
+        if (enemies.isEmpty()) {
+            return;
+        }
+        enemies.stream().forEach(enemy -> { //recorremos la lista de enemigos.
+            if (enemy.isActiveOnScreen(map.getDifx())) {
+                try {
+                    Engine.hpaux += enemy.damageDeal(Engine.hacker);
+                    g.drawImage(enemy.getEnemySecuence(), enemy
+                            .getScreenXPosition(), (int) enemy
+                                    .getYposition(), null);
+                } catch (Exception e) {
+                    System.out.println("An enemy cannot be painted");
                 }
             }
-        }
+
+        });
+
     }
 
     public String getMapName() {
@@ -245,7 +260,7 @@ public class Level implements Serializable {
         return s;
     }
 
-    public ArrayList<Enemy> getEnemies() {
+    public List<Enemy> getEnemies() {
         return this.enemies;
     }
 }
