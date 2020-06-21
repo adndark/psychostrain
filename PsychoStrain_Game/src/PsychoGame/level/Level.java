@@ -98,8 +98,8 @@ public class Level implements Serializable {
     private ArrayList<Enemy> transformArray(final String[] array) {
         ArrayList<Enemy> enemies = new ArrayList();
         if (array != null) {
-            for (int i = 0; i < array.length; i++) {
-                enemies.add(transformStringToEnemy(array[i].substring(1)));
+            for (String array1 : array) {
+                enemies.add(transformStringToEnemy(array1.substring(1)));
             }
         }
         return enemies;

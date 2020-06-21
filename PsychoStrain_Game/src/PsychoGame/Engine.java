@@ -17,8 +17,8 @@ import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
-import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 //  PsySoft Team 2008
 //       (Manuel Espinoza, Alberto Zorrilla, Guillermo Leon y Arquimedes Diaz)
@@ -287,7 +287,7 @@ public class Engine {
         setAim(a);
         hacker.setFireImage(a);
         weapon.setAmmo(false);
-        ArrayList<Enemy> enemies = level.getEnemies();
+        List<Enemy> enemies = level.getEnemies();
         if (!enemies.isEmpty()) {
             for (int j = 0; j < enemies.size(); j++) {
                 Enemy bad = enemies.get(j);
@@ -491,9 +491,8 @@ public class Engine {
     }
 
     public static void main(String args[]) {
-        System.out.println("Run menu");
+        System.out.println(System.getProperty("user.dir"));
         runMenu(); //hasta que el menu me deje seguir :D
-        System.out.println("Menu ended");
         Engine.setDefaults();
         while (true) {
             setStateHacker();
