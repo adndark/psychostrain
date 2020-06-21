@@ -2,27 +2,24 @@ package PsychoGame.level;
 // Level.java (Antes GameStage.java)
 
 import PsychoGame.Engine;
-import PsychoGame.enemy.EnemyTank;
-import PsychoGame.enemy.EnemySuperSpider;
-import PsychoGame.enemy.EnemySpider;
-import PsychoGame.enemy.EnemyRueda;
-import PsychoGame.enemy.EnemyRobot;
-import PsychoGame.enemy.EnemyMedusa;
-import PsychoGame.enemy.EnemyClawRobot;
-import PsychoGame.enemy.EnemyChainRobot;
 import PsychoGame.enemy.Enemy;
+import PsychoGame.enemy.EnemyChainRobot;
+import PsychoGame.enemy.EnemyClawRobot;
+import PsychoGame.enemy.EnemyMedusa;
+import PsychoGame.enemy.EnemyRobot;
+import PsychoGame.enemy.EnemyRueda;
+import PsychoGame.enemy.EnemySpider;
+import PsychoGame.enemy.EnemySuperSpider;
+import PsychoGame.enemy.EnemyTank;
 import PsychoGame.gameobject.AnimatedObject;
-import java.awt.image.BufferedImage;
 import PsychoSystem.*;
-
-//  PsySoft Team 2008
-//       (Manuel Espinoza, Alberto Zorrilla, Guillermo Leon y Arquimedes Diaz)
 import java.awt.Graphics;
+import java.awt.image.BufferedImage;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Observer;
 import java.util.stream.Collectors;
-import java.util.List;
 
 public class Level implements Serializable {
 

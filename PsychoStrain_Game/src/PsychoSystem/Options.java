@@ -2,11 +2,7 @@ package PsychoSystem;
 
 import java.awt.event.KeyEvent;
 import java.util.HashMap;
-
-//  PsySoft Team 2008
 import javax.swing.JOptionPane;
-//       (Manuel Espinoza, Alberto Zorrilla, Guillermo Leon y Arquimedes Diaz)
-
 public class Options {
     //variables de instancia
 

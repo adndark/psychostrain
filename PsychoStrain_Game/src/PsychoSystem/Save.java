@@ -1,7 +1,7 @@
 package PsychoSystem;
 
-import PsychoGame.level.Map;
 import PsychoGame.*;
+import PsychoGame.level.Map;
 import java.io.Serializable;
 
 // Psysoft Team

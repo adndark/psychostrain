@@ -1,5 +1,6 @@
 package PsychoGame;
 
+import static PsychoMenu.FontHelper.CRAZY_FONT;
 import PsychoSystem.GameImage;
 import java.awt.Color;
 import java.awt.Font;
@@ -7,17 +8,15 @@ import java.awt.FontFormatException;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Observable;
 import java.util.Observer;
-import java.awt.event.MouseMotionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-
-import static PsychoMenu.FontHelper.CRAZY_FONT;
-import java.io.InputStream;
 
 //  PsySoft Team 2008
 //       (Manuel Espinoza, Alberto Zorrilla, Guillermo Leon y Arquimedes Diaz)

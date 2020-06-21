@@ -1,8 +1,8 @@
 package PsychoGame.level;
 
+import java.awt.Graphics2D;
 import java.awt.GraphicsConfiguration;
 import java.awt.GraphicsEnvironment;
-import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
 //  PsySoft Team 2008

@@ -1,11 +1,7 @@
 package PsychoMenu;
 
 import PsychoGame.Engine;
-
-//  PsySoft Team 2008
 import java.awt.Font;
-//       (Manuel Espinoza, Alberto Zorrilla, Guillermo Leon y Arquimedes Diaz)
-import java.io.File;
 import java.io.InputStream;
 
 public class OptPanel extends javax.swing.JFrame {

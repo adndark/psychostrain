@@ -1,9 +1,9 @@
 package PsychoGame.level;
 
-import PsychoGame.console.Console;
 import PsychoGame.Engine;
-import PsychoGame.hacker.Hacker;
+import PsychoGame.console.Console;
 import PsychoGame.gameobject.AnimatedObject;
+import PsychoGame.hacker.Hacker;
 import PsychoSystem.FileLoader;
 import java.awt.Color;
 import java.awt.Graphics2D;
