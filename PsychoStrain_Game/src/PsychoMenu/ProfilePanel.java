@@ -27,8 +27,13 @@ public class ProfilePanel extends javax.swing.JFrame {
 
     public void setCrazy() {
         try {
-            Font crazy = Font.createFont(Font.TRUETYPE_FONT, new File(
-                    "resources/fonts/byte.ttf"));
+            File file = new File(
+                getClass()
+                        .getClassLoader()
+                        .getResource("resources/fonts/byte.ttf")
+                        .getFile()
+            );
+            Font crazy = Font.createFont(Font.TRUETYPE_FONT, file);
             crazy = crazy.deriveFont(14f);
             delBtn.setFont(crazy);
             jButton1.setFont(crazy);

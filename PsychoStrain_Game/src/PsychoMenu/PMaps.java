@@ -35,8 +35,13 @@ public class PMaps extends javax.swing.JFrame {
 
     public void setCrazy() {
         try {
-            Font crazy = Font.createFont(Font.TRUETYPE_FONT, new File(
-                    "resources/fonts/byte.ttf"));
+            File file = new File(
+                getClass()
+                        .getClassLoader()
+                        .getResource("resources/fonts/byte.ttf")
+                        .getFile()
+            );
+            Font crazy = Font.createFont(Font.TRUETYPE_FONT, file);
             crazy = crazy.deriveFont(14.0f);
             this.setFont(crazy);
             cancelBtn.setFont(crazy);

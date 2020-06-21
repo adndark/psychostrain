@@ -44,8 +44,13 @@ public class Menu extends javax.swing.JFrame {
     //pone la fuente chingona
     public void setCrazy() {
         try {
-            Font crazy = Font.createFont(Font.TRUETYPE_FONT, new File(
-                    "resources/fonts/byte.ttf"));
+            File file = new File(
+                getClass()
+                        .getClassLoader()
+                        .getResource("resources/fonts/byte.ttf")
+                        .getFile()
+            );
+            Font crazy = Font.createFont(Font.TRUETYPE_FONT, file);
             crazy = crazy.deriveFont(30f);
             newGameLbl.setFont(crazy);
             profilesLbl.setFont(crazy);
@@ -62,6 +67,7 @@ public class Menu extends javax.swing.JFrame {
             System.out.println(ex);
         } catch (IOException ex) {
             System.out.println(ex);
+            ex.printStackTrace();
         }
     }
 
