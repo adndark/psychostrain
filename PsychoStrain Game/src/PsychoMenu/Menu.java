@@ -75,24 +75,19 @@ public class Menu extends javax.swing.JFrame {
 
     //FLOW CONTROL FOR THE FUCKING WIN, si borraramos esto, todo valdria madre :(
     public static boolean continueMain() {
-        System.out.println(control);
         return control;
     }
 
     //Cambiar el estado de control, si es verdadero se queda en un ciclo el main del Engine  
     public static void setControl(boolean status) {
-        System.out.println("Setting control status to" + status);
         control = status;
     }
 
     public synchronized void setShouldCloseMenu(boolean shouldCloseMenu) {
-        System.out.println("Setting close menu to " + shouldCloseMenu);
         this.shouldCloseMenu = shouldCloseMenu;
-        System.out.println(this.shouldCloseMenu);
     }
 
     public synchronized boolean getShouldCloseMenu() {
-        //System.out.println("getShouldCloseMenu " + this.shouldCloseMenu);
         return this.shouldCloseMenu;
     }
 
