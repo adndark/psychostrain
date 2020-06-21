@@ -9,13 +9,15 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 import java.util.Observable;
 import java.util.Observer;
 import java.awt.event.MouseMotionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+
+import static PsychoMenu.FontHelper.CRAZY_FONT;
+import java.io.InputStream;
 
 //  PsySoft Team 2008
 //       (Manuel Espinoza, Alberto Zorrilla, Guillermo Leon y Arquimedes Diaz)
@@ -86,13 +88,11 @@ public class Window extends javax.swing.JFrame implements
 
     private void setCrazy() {
         try {
-            File file = new File(
+            InputStream inputStream =
                     getClass()
                             .getClassLoader()
-                            .getResource("resources/fonts/byte.ttf")
-                            .getFile()
-            );
-            Font crazy = Font.createFont(Font.TRUETYPE_FONT, file);
+                            .getResourceAsStream(CRAZY_FONT);
+            Font crazy = Font.createFont(Font.TRUETYPE_FONT, inputStream);
             crazy = crazy.deriveFont(20.0f);
             this.setFont(crazy);
         } catch (FontFormatException ex) {

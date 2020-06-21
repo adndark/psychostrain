@@ -1,10 +1,10 @@
 package PsychoSystem;
 
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 import javax.imageio.ImageIO;
 
@@ -14,15 +14,10 @@ public class GameImage {
 
     public static BufferedImage loadImage(String nameImage) {
         try {
-            File file = new File(
-                GameImage.class
-                        .getClassLoader()
-                        .getResource(nameImage)
-                        .getFile()
-            );
-            BufferedImage i = ImageIO.read(file);
-            return i;
-        } catch (Exception e) {
+            InputStream inputStream = getInputStream(nameImage);
+            BufferedImage bufferedImage = ImageIO.read(inputStream);
+            return bufferedImage;
+        } catch (IOException e) {
             System.out.print("Error loading method " + nameImage + "\n");
             System.out.print(e.getMessage());
             return null;
@@ -35,13 +30,16 @@ public class GameImage {
         BufferedImage[] Loadedimages;
         int idx = 0;
         try {
-            BufferedReader entry = new BufferedReader(new FileReader(file));
+            InputStream inputStream = getInputStream(file);
+            BufferedReader entry = new BufferedReader(new InputStreamReader(
+                    inputStream));
             numImages = Integer.parseInt(data = entry.readLine());
             Loadedimages = new BufferedImage[numImages];
             while ((data = entry.readLine()) != null) {
                 StringTokenizer st = new StringTokenizer(data);
-                Loadedimages[idx++] = loadImage("resources/sprites/" + folder + "/" + st
-                        .nextToken());
+                Loadedimages[idx++] = loadImage(
+                        "resources/sprites/" + folder + "/" + st
+                                .nextToken());
             }
             return Loadedimages;
         } catch (IOException ioe) {
@@ -57,7 +55,9 @@ public class GameImage {
         int[] Sprites;
         int idx = 0;
         try {
-            BufferedReader entry = new BufferedReader(new FileReader(file));
+            InputStream inputStream = getInputStream(file);
+            BufferedReader entry = new BufferedReader(new InputStreamReader(
+                    inputStream));
             numImages = Integer.parseInt(data = entry.readLine());
             Sprites = new int[numImages];
 
@@ -70,7 +70,14 @@ public class GameImage {
         } catch (IOException ioe) {
             System.out.println(
                     "Error loading images... loadFromFileSprites method.");
+            ioe.printStackTrace();
         }
         return null;
+    }
+
+    private static InputStream getInputStream(String filepath) {
+        return GameImage.class
+                .getClassLoader()
+                .getResourceAsStream(filepath);
     }
 }

@@ -5,8 +5,10 @@ import PsychoSystem.Sound;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.FontFormatException;
-import java.io.File;
+import java.awt.Image;
 import java.io.IOException;
+import java.io.InputStream;
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 
 //  PsySoft Team 2008
@@ -43,50 +45,46 @@ public class Menu extends javax.swing.JFrame {
 
     //pone la fuente chingona
     public void setCrazy() {
-        try {
-            File file = new File(
+
+        InputStream inputStream =
                 getClass()
                         .getClassLoader()
-                        .getResource("resources/fonts/byte.ttf")
-                        .getFile()
-            );
-            Font crazy = Font.createFont(Font.TRUETYPE_FONT, file);
+                        .getResourceAsStream(FontHelper.CRAZY_FONT);
+        Font crazy = null;
+        try {
+            crazy = Font.createFont(Font.TRUETYPE_FONT, inputStream);
             crazy = crazy.deriveFont(30f);
-            newGameLbl.setFont(crazy);
-            profilesLbl.setFont(crazy);
-            optLbl.setFont(crazy);
-            exitLbl.setFont(crazy);
-            selectMap.setFont(crazy);
-            newGameLbl.setForeground(Color.LIGHT_GRAY);
-            profilesLbl.setForeground(Color.LIGHT_GRAY);
-            optLbl.setForeground(Color.LIGHT_GRAY);
-            exitLbl.setForeground(Color.LIGHT_GRAY);
-            selectMap.setForeground(Color.LIGHT_GRAY);
-            profileLbl.setText(Engine.selectedProfile);
-        } catch (FontFormatException ex) {
-            System.out.println(ex);
-        } catch (IOException ex) {
-            System.out.println(ex);
-            ex.printStackTrace();
+
+        } catch (IOException | FontFormatException ex) {
+            System.out.println("Error when loading font " + ex);
         }
+        newGameLbl.setFont(crazy);
+        profilesLbl.setFont(crazy);
+        optLbl.setFont(crazy);
+        exitLbl.setFont(crazy);
+        selectMap.setFont(crazy);
+        newGameLbl.setForeground(Color.LIGHT_GRAY);
+        profilesLbl.setForeground(Color.LIGHT_GRAY);
+        optLbl.setForeground(Color.LIGHT_GRAY);
+        exitLbl.setForeground(Color.LIGHT_GRAY);
+        selectMap.setForeground(Color.LIGHT_GRAY);
+        profileLbl.setText(Engine.selectedProfile);
     }
 
     //dibuja el chingonsisimo logo
     private void drawLogo(String imagePath) {
-        
-        File file = null;
-        ImageIcon icon = null;
+
+        InputStream inputStream =
+                getClass()
+                        .getClassLoader()
+                        .getResourceAsStream(imagePath);
+        Image image = null;
         try {
-            file = new File(
-                    getClass()
-                            .getClassLoader()
-                            .getResource(imagePath)
-                            .getFile()
-            );
-        icon = new ImageIcon(file.getCanonicalPath());
+            image = ImageIO.read(inputStream);
         } catch (IOException ex) {
-            System.out.println("Error reading file " + ex);
+            System.out.println("Error drawing logo " + ex);
         }
+        ImageIcon icon = new ImageIcon(image);
         icon.setImage(icon.getImage().getScaledInstance(gameLogo.getWidth(),
                 gameLogo.getHeight(), 0));
         gameLogo.setIcon(icon);

@@ -7,7 +7,7 @@ package PsychoMenu;
 
 import PsychoGame.Engine;
 import java.awt.Font;
-import java.io.File;
+import java.io.InputStream;
 import javax.swing.JOptionPane;
 
 /**
@@ -44,13 +44,11 @@ public class NewGame extends javax.swing.JFrame {
 
     public void setCrazy() {
         try {
-            File file = new File(
-                getClass()
-                        .getClassLoader()
-                        .getResource("resources/fonts/byte.ttf")
-                        .getFile()
-            );
-            Font crazy = Font.createFont(Font.TRUETYPE_FONT, file);
+            InputStream inputStream =
+                    getClass()
+                            .getClassLoader()
+                            .getResourceAsStream(FontHelper.CRAZY_FONT);
+            Font crazy = Font.createFont(Font.TRUETYPE_FONT, inputStream);
             crazy = crazy.deriveFont(14f);
             jRadioButton1.setFont(crazy);
             jRadioButton2.setFont(crazy);

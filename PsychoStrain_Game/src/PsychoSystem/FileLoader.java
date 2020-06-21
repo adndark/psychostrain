@@ -6,13 +6,14 @@ import PsychoGame.Engine;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
@@ -30,30 +31,23 @@ public class FileLoader {
         HashMap<String, Integer> hashMap = new HashMap();
         int i = 0;
         String aux;
+        InputStream inputStream = getInputStream("configurations/keyboard/defaultConfig.cfg");
+        BufferedReader getCfgFile = new BufferedReader(new InputStreamReader(inputStream)); //gameConfig.cfg DUH
         try {
-            BufferedReader getCfgFile = new BufferedReader(new FileReader(
-                    "configurations/keyboard/defaultConfig.cfg")); //gameConfig.cfg DUH
-            try {
-                while ((aux = getCfgFile.readLine()) != null) {
-                    if (!(aux.charAt(0) == '#' || aux.charAt(0) == ' ')) {
-                        hashMap.put(configArray[i], Integer.parseInt(aux));
-                        i++;
-                    }
+            while ((aux = getCfgFile.readLine()) != null) {
+                if (!(aux.charAt(0) == '#' || aux.charAt(0) == ' ')) {
+                    hashMap.put(configArray[i], Integer.parseInt(aux));
+                    i++;
                 }
-                getCfgFile.close();
-            } catch (IOException ex) {
-                System.out.println("Error when reading file");
-                JOptionPane.showMessageDialog(null, ex);
-            } catch (NullPointerException ex) {
-                System.out.println("Error when reading file");
-                JOptionPane.showMessageDialog(null,
-                        "El archivo de configuracion esta mal formado\nSe cargaran los defaults para crear uno nuevo.");
-                return hashMap;
             }
-        } catch (FileNotFoundException ex) {
+            getCfgFile.close();
+        } catch (IOException ex) {
+            System.out.println("Error when reading file");
+            JOptionPane.showMessageDialog(null, ex);
+        } catch (NullPointerException ex) {
             System.out.println("Error when reading file");
             JOptionPane.showMessageDialog(null,
-                    "No se encontro el archivo de configuracion! (" + ex + ")\nSe cargaran los defaults para crear uno nuevo.");
+                    "El archivo de configuracion esta mal formado\nSe cargaran los defaults para crear uno nuevo.");
             return hashMap;
         }
         return hashMap;
@@ -93,31 +87,21 @@ public class FileLoader {
     public static int[][] getMap(String fileName) {
         String aux, acum = "", tmp;
         int x = 0, y = 0, num = 0;
+
+        InputStream inputStream = getInputStream(fileName);
+        BufferedReader getCfgFile = new BufferedReader(new InputStreamReader(
+                inputStream));
         try {
-            File file = getFile(fileName);
-            BufferedReader getCfgFile = new BufferedReader(new FileReader(
-                    file));
-            try {
-                while ((aux = getCfgFile.readLine()) != null) {
-                    if (!(aux.charAt(0) == '#' || aux.charAt(0) == ' ' || aux
-                            .charAt(0) == '>')) {
-                        acum += aux + ".";
-                        y++;
-                    }
+            while ((aux = getCfgFile.readLine()) != null) {
+                if (!(aux.charAt(0) == '#' || aux.charAt(0) == ' ' || aux
+                        .charAt(0) == '>')) {
+                    acum += aux + ".";
+                    y++;
                 }
-                getCfgFile.close();
-            } catch (IOException ex) {
-                System.out.println(ex);
-                JOptionPane.showMessageDialog(null, ex);
-            } catch (NullPointerException ex) {
-                System.out.println(ex);
-                JOptionPane.showMessageDialog(null, ex);
-            } catch (StringIndexOutOfBoundsException ex) {
-                System.out.println(ex);
-                JOptionPane.showMessageDialog(null,
-                        "Error en el archivo" + fileName + ": " + ex);
             }
-        } catch (FileNotFoundException ex) {
+            getCfgFile.close();
+        } catch (IOException | NullPointerException
+                | StringIndexOutOfBoundsException ex) {
             System.out.println(ex);
             JOptionPane.showMessageDialog(null, ex);
         }
@@ -151,9 +135,10 @@ public class FileLoader {
     public static ArrayList<String> loadEnemies(String fileName) {
         ArrayList<String> enemies = new ArrayList();
         try {
-            File file = getFile(fileName);
-            BufferedReader fileIn = new BufferedReader(new FileReader(file));
-            String aux = "";
+            InputStream inputStream = getInputStream(fileName);
+            BufferedReader fileIn = new BufferedReader(new InputStreamReader(
+                    inputStream));
+            String aux;
             while ((aux = fileIn.readLine()) != null) {
                 if (aux.charAt(0) == '>') {
                     enemies.add(aux.substring(1));
@@ -246,41 +231,39 @@ public class FileLoader {
         HashMap<Integer, BufferedImage> hashMap = new HashMap();
         int i = 1;
         String aux;
+        InputStream inputStream = getInputStream(fileName);
+        BufferedReader getCfgFile = new BufferedReader(
+                new InputStreamReader(inputStream)); //archivo tileList
         try {
-            File file = getFile(fileName);
-            BufferedReader getCfgFile = new BufferedReader(new FileReader(file)); //archivo tileList
-            try {
-                while ((aux = getCfgFile.readLine()) != null) {
-                    if (!(aux.charAt(0) == '#' || aux.charAt(0) == ' ')) {
-                        hashMap.put(i, GameImage.loadImage("resources/tiles/" + aux));
-                        i++;
-                    }
+            while ((aux = getCfgFile.readLine()) != null) {
+                if (!(aux.charAt(0) == '#' || aux.charAt(0) == ' ')) {
+                    hashMap.put(i, GameImage.loadImage(
+                            "resources/tiles/" + aux));
+                    i++;
                 }
-                getCfgFile.close();
-            } catch (IOException ex) {
-                System.out.println(ex);
-                JOptionPane.showMessageDialog(null, ex);
-            } catch (NullPointerException ex) {
-                System.out.println(ex);
-                JOptionPane.showMessageDialog(null,
-                        "la lista de tiles esta mal formada\n");
             }
-        } catch (FileNotFoundException ex) {
+            getCfgFile.close();
+        } catch (IOException ex) {
             System.out.println(ex);
             JOptionPane.showMessageDialog(null, ex);
+        } catch (NullPointerException ex) {
+            System.out.println(ex);
+            JOptionPane.showMessageDialog(null,
+                    "la lista de tiles esta mal formada\n");
         }
         return hashMap;
     }
 
     public static Object loadChallenge(String fileName) {
-        Object obj = null;
+        Object obj;
         try {
-            ObjectInputStream objRead = new ObjectInputStream(
-                    new FileInputStream(fileName));
-            obj = objRead.readObject();
-            objRead.close();
+            try (ObjectInputStream objRead =
+                    new ObjectInputStream(
+                            new FileInputStream(fileName))) {
+                obj = objRead.readObject();
+            }
             return obj;
-        } catch (Exception ex) {
+        } catch (IOException | ClassNotFoundException ex) {
             System.out.println(ex);
             JOptionPane.showMessageDialog(null, ex);
             return null;
@@ -289,13 +272,14 @@ public class FileLoader {
 
     public static void saveChallenge(String fileName, Object obj) {
         try {
-            ObjectOutputStream saveObj = new ObjectOutputStream(
-                    new FileOutputStream(fileName));
-            saveObj.writeObject(obj);
-            saveObj.flush();
-            saveObj.close();
+            try (ObjectOutputStream saveObj =
+                    new ObjectOutputStream(
+                            new FileOutputStream(fileName))) {
+                saveObj.writeObject(obj);
+                saveObj.flush();
+            }
         } catch (IOException e) {
-
+            System.out.println("Error when saving challenge " + e);
         }
     }
 
@@ -303,47 +287,41 @@ public class FileLoader {
         HashMap<Integer, String> hashMap = new HashMap();
         int i = 0;
         String aux;
+        InputStream inputStream = getInputStream(fileName);
+        BufferedReader getCfgFile = new BufferedReader(new InputStreamReader(
+                inputStream));
         try {
-            BufferedReader getCfgFile = new BufferedReader(new FileReader(
-                    fileName));
-            try {
-                while ((aux = getCfgFile.readLine()) != null) {
-                    if (!(aux.charAt(0) == '#' || aux.charAt(0) == ' ')) {
-                        aux = aux.replace("$", "\n\t");
-                        if (aux.contains("%")) {
-                            String a = KeyEvent.getKeyText(Engine.staticOpt
-                                    .getIzquierda()) + "-->Izquierda" + "\n\t" + KeyEvent
-                                            .getKeyText(Engine.staticOpt
-                                                    .getDerecha()) + "-->Derecha" + "\n\t"
-                                    + KeyEvent.getKeyText(Engine.staticOpt
-                                            .getAbajo()) + "-->Ducking" + "\n\t" + KeyEvent
-                                            .getKeyText(Engine.staticOpt.getUp()) + "-->Arriba" + "\n\t"
-                                    + KeyEvent.getKeyText(Engine.staticOpt
-                                            .getSalto()) + "-->Salto" + "\n\t" + KeyEvent
-                                            .getKeyText(Engine.staticOpt
-                                                    .getCmd()) + "-->Consola";
-
-                            aux = aux.replace("%", "" + a);
-
-                        }
-                        hashMap.put(i, aux);
-                        i++;
+            while ((aux = getCfgFile.readLine()) != null) {
+                if (!(aux.charAt(0) == '#' || aux.charAt(0) == ' ')) {
+                    aux = aux.replace("$", "\n\t");
+                    if (aux.contains("%")) {
+                        String a = KeyEvent.getKeyText(Engine.staticOpt
+                                .getIzquierda()) + "-->Izquierda" + "\n\t" + KeyEvent
+                                        .getKeyText(Engine.staticOpt
+                                                .getDerecha()) + "-->Derecha" + "\n\t"
+                                + KeyEvent.getKeyText(Engine.staticOpt
+                                        .getAbajo()) + "-->Ducking" + "\n\t" + KeyEvent
+                                                .getKeyText(Engine.staticOpt.getUp()) + "-->Arriba" + "\n\t"
+                                + KeyEvent.getKeyText(Engine.staticOpt
+                                        .getSalto()) + "-->Salto" + "\n\t" + KeyEvent
+                                                .getKeyText(Engine.staticOpt
+                                                        .getCmd()) + "-->Consola";
+                        
+                        aux = aux.replace("%", "" + a);
+                        
                     }
+                    hashMap.put(i, aux);
+                    i++;
                 }
-                getCfgFile.close();
-            } catch (IOException ex) {
-                System.out.println(ex);
-                JOptionPane.showMessageDialog(null, ex);
-            } catch (NullPointerException ex) {
-                System.out.println(ex);
-                JOptionPane.showMessageDialog(null,
-                        "El archivo de configuracion esta mal formado\nSe cargaran los defaults para crear uno nuevo.");
-                return hashMap;
             }
-        } catch (FileNotFoundException ex) {
+            getCfgFile.close();
+        } catch (IOException ex) {
+            System.out.println(ex);
+            JOptionPane.showMessageDialog(null, ex);
+        } catch (NullPointerException ex) {
             System.out.println(ex);
             JOptionPane.showMessageDialog(null,
-                    "No se encontro el archivo de configuracion! (" + ex + ")\nSe cargaran los defaults para crear uno nuevo.");
+                    "El archivo de configuracion esta mal formado\nSe cargaran los defaults para crear uno nuevo.");
             return hashMap;
         }
         return hashMap;
@@ -379,11 +357,12 @@ public class FileLoader {
     public static void saveGame(String fileName) {
         PsychoSystem.Save s = new PsychoSystem.Save();
         try {
-            ObjectOutputStream saveObj = new ObjectOutputStream(
-                    new FileOutputStream(fileName));
-            saveObj.writeObject(s);
-            saveObj.flush();
-            saveObj.close();
+            try (ObjectOutputStream saveObj =
+                    new ObjectOutputStream(
+                            new FileOutputStream(fileName))) {
+                saveObj.writeObject(s);
+                saveObj.flush();
+            }
         } catch (IOException ex) {
             System.out.println(ex);
         }
@@ -392,12 +371,14 @@ public class FileLoader {
 
     public static PsychoSystem.Save loadGame(String fileName) {
         try {
-            ObjectInputStream objRead = new ObjectInputStream(
-                    new FileInputStream(fileName));
-            Save save = (Save) objRead.readObject();
-            objRead.close();
+            Save save;
+            try (ObjectInputStream objRead =
+                    new ObjectInputStream(
+                            new FileInputStream(fileName))) {
+                save = (Save) objRead.readObject();
+            }
             return save;
-        } catch (Exception ex) {
+        } catch (IOException | ClassNotFoundException ex) {
             JOptionPane.showMessageDialog(null, ex);
             System.out.println("Error al cargar el archivo " + fileName);
             return null;
@@ -419,10 +400,7 @@ public class FileLoader {
                     }
                 }
                 getCfgFile.close();
-            } catch (IOException ex) {
-                System.out.println(ex);
-                JOptionPane.showMessageDialog(null, ex);
-            } catch (NullPointerException ex) {
+            } catch (IOException | NullPointerException ex) {
                 System.out.println(ex);
                 JOptionPane.showMessageDialog(null, ex);
             }
@@ -454,16 +432,11 @@ public class FileLoader {
             JOptionPane.showMessageDialog(null, ex);
         }
     }
-    
-    private static File getFile(String fileName) {
 
-        File file = new File(
-                FileLoader.class
-                        .getClassLoader()
-                        .getResource(fileName)
-                        .getFile()
-        );
-        return file;
+    private static InputStream getInputStream(String fileName) {
 
+        return FileLoader.class
+                .getClassLoader()
+                .getResourceAsStream(fileName);
     }
 }

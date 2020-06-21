@@ -6,6 +6,7 @@ import PsychoGame.Engine;
 import java.awt.Font;
 //       (Manuel Espinoza, Alberto Zorrilla, Guillermo Leon y Arquimedes Diaz)
 import java.io.File;
+import java.io.InputStream;
 
 public class OptPanel extends javax.swing.JFrame {
 
@@ -32,13 +33,12 @@ public class OptPanel extends javax.swing.JFrame {
 
     public void setCrazy() {
         try {
-            File file = new File(
-                getClass()
-                        .getClassLoader()
-                        .getResource("resources/fonts/byte.ttf")
-                        .getFile()
-            );
-            Font crazy = Font.createFont(Font.TRUETYPE_FONT, file);
+            InputStream inputStream =
+                    getClass()
+                            .getClassLoader()
+                            .getResourceAsStream(FontHelper.CRAZY_FONT);
+
+            Font crazy = Font.createFont(Font.TRUETYPE_FONT, inputStream);
             crazy = crazy.deriveFont(14f);
             jLabel2.setFont(crazy);
             jLabel1.setFont(crazy);

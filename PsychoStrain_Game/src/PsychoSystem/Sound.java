@@ -2,8 +2,7 @@ package PsychoSystem;
 
 //  PsySoft Team 2008
 //       (Manuel Espinoza, Alberto Zorrilla, Guillermo Leon y Arquimedes Diaz)
-import java.io.File;
-import java.io.FileInputStream;
+import java.io.InputStream;
 import javax.sound.midi.MidiSystem;
 import javax.sound.midi.MidiUnavailableException;
 import javax.sound.midi.Sequence;
@@ -21,14 +20,11 @@ public class Sound {
                 throw new MidiUnavailableException();
             }
             sound.open();
-            File file = new File(
-                getClass()
-                        .getClassLoader()
-                        .getResource(filepath)
-                        .getFile()
-            );
-            FileInputStream is = new FileInputStream(file);
-            Sequence mySeq = MidiSystem.getSequence(is);
+            InputStream inputStream =
+                    getClass()
+                            .getClassLoader()
+                            .getResourceAsStream(filepath);
+            Sequence mySeq = MidiSystem.getSequence(inputStream);
             sound.setSequence(mySeq);
         } catch (Exception e) {
             System.out.println("Error de Sonido: " + filepath + " " + e

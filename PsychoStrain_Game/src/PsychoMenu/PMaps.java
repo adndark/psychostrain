@@ -15,6 +15,7 @@ import java.awt.Font;
 import java.awt.FontFormatException;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import javax.swing.DefaultListModel;
 
 /**
@@ -35,13 +36,12 @@ public class PMaps extends javax.swing.JFrame {
 
     public void setCrazy() {
         try {
-            File file = new File(
-                getClass()
-                        .getClassLoader()
-                        .getResource("resources/fonts/byte.ttf")
-                        .getFile()
-            );
-            Font crazy = Font.createFont(Font.TRUETYPE_FONT, file);
+            InputStream inputStream =
+                    getClass()
+                            .getClassLoader()
+                            .getResourceAsStream(FontHelper.CRAZY_FONT);
+
+            Font crazy = Font.createFont(Font.TRUETYPE_FONT, inputStream);
             crazy = crazy.deriveFont(14.0f);
             this.setFont(crazy);
             cancelBtn.setFont(crazy);
@@ -49,9 +49,7 @@ public class PMaps extends javax.swing.JFrame {
             mapList.setFont(crazy);
             mapaslbl.setFont(crazy);
             playBtn.setFont(crazy);
-        } catch (FontFormatException ex) {
-            System.out.println(ex);
-        } catch (IOException ex) {
+        } catch (FontFormatException | IOException ex) {
             System.out.println(ex);
         }
     }

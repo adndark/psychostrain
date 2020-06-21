@@ -5,7 +5,10 @@ import PsychoGame.Engine;
 import PsychoSystem.FileLoader;
 import PsychoSystem.Save;
 import java.awt.Font;
+import java.awt.FontFormatException;
 import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.HashMap;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
@@ -26,28 +29,28 @@ public class ProfilePanel extends javax.swing.JFrame {
     }
 
     public void setCrazy() {
-        try {
-            File file = new File(
+        InputStream inputStream =
                 getClass()
                         .getClassLoader()
-                        .getResource("resources/fonts/byte.ttf")
-                        .getFile()
-            );
-            Font crazy = Font.createFont(Font.TRUETYPE_FONT, file);
+                        .getResourceAsStream(FontHelper.CRAZY_FONT);
+
+        Font crazy = null;
+        try {
+            crazy = Font.createFont(Font.TRUETYPE_FONT, inputStream);
             crazy = crazy.deriveFont(14f);
-            delBtn.setFont(crazy);
-            jButton1.setFont(crazy);
-            jLabel1.setFont(crazy);
-            jLabel2.setFont(crazy);
-            loadBtn.setFont(crazy);
-            newBtn.setFont(crazy);
-            profileDelBtn.setFont(crazy);
-            profileLbl.setFont(crazy);
-            savedList.setFont(crazy);
-            profileList.setFont(crazy);
-        } catch (Exception ex) {
-            System.out.println(ex);
+        } catch (IOException | FontFormatException ex) {
+            System.out.println("Error when loading font " + ex);
         }
+        delBtn.setFont(crazy);
+        jButton1.setFont(crazy);
+        jLabel1.setFont(crazy);
+        jLabel2.setFont(crazy);
+        loadBtn.setFont(crazy);
+        newBtn.setFont(crazy);
+        profileDelBtn.setFont(crazy);
+        profileLbl.setFont(crazy);
+        savedList.setFont(crazy);
+        profileList.setFont(crazy);
     }
 
     public void fillStuff() {
