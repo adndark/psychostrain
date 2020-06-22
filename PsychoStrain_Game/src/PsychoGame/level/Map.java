@@ -80,7 +80,7 @@ public class Map extends Observable {
         final Graphics2D g = mapCanvas.createGraphics();
         for (int i = 0; i < mapMatrix.length; i++) {
             for (int j = 0; j < mapMatrix[0].length; j++) {
-                g.drawImage(this.tiles.get(new Integer(this.mapMatrix[i][j])),
+                g.drawImage(this.tiles.get(this.mapMatrix[i][j]),
                         j * escala, i * escala, Engine.window);
             }
         }
